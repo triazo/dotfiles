@@ -1,0 +1,5 @@
+#!/bin/sh
+
+exec urxvtc +sb -fg \#484848 -bg \#ebebeb "$@" -fn xft:lime $@
+# exec urxvtc +sb -fg \#484848 -bg \#ebebeb "$@" -fn xft:
+

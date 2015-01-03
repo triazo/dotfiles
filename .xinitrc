@@ -1,0 +1,46 @@
+#!/bin/bash
+
+echo "Started xinitrc" >> /tmp/xlog.txt
+
+export PATH=/home/adam/usr/bin:/home/adam/scripts:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+export PATH=/home/adam/usr/bin:/home/adam/scripts:$PATH
+export PATH=$PATH:/home/adam/usr/local/adt-bundle-linux-x86_64-20140321/sdk/tools:/home/adam/usr/local/adt-bundle-linux-x86_64-20140321/sdk/platform-tools
+export PATH=$PATH:/opt/android-sdk/tools:/opt/android-sdk/platform-tools
+
+xmodmap ~/.xmodmap
+TPAD=$(xinput list | grep Touch | cut -d '=' -f 2 | awk '{print $1}')
+xinput -disable $TPAD
+xinput set-prop $TPAD "Synaptics Tap Time" "0"
+TPNT=$(xinput list | grep TrackPoint | cut -d '=' -f 2 | awk '{print $1}')
+xinput set-prop $TPNT "Evdev Wheel Emulation" 1
+xinput set-prop $TPNT "Evdev Wheel Emulation Button" 2
+xinput set-prop $TPNT "Evdev Wheel Emulation Timeout" 200
+xinput set-prop $TPNT "Evdev Wheel Emulation Axes" 6 7 4 5
+
+echo 'true' > /tmp/lid_sleep
+xbacklight -set 50
+feh --bg-scale media/wallpapers/weiss2.png
+# mpd
+# bluetooth off
+while true; do urxvtd; done&
+xbindkeys &
+# xflux -z 12590 &
+# xsnow -nosanta -notrees -norudolf -nokeepsnowonscreen &
+# /home/adam/usr/bin/btsync &
+(sleep 6; pidgin;) &
+#(sleep 3; trayer --height 19 --widthtype request --edge top &; nm-applet&; disown; disown) &
+
+if ! pgrep header.py; then
+    ~/scripts/header.py server &
+fi
+
+if ! pgrep weenotify.py; then
+    ~/scripts/weenotify.py/
+fi
+
+# conky &
+# matchbox-window-manager &
+ ~/scripts/dwm_run.sh run 2>/tmp/dwm_out.txt >/tmp/xlog.txt
+# fvwm
+# emacs -g 196x60+0+0
+# exec chromeos

@@ -1,0 +1,16 @@
+!
+! Swap Caps_Lock and Control_L and Super keys
+!
+remove Lock = Caps_Lock
+remove Control = Control_L
+remove mod4 = Super_L
+remove mod4 = Hyper_L
+keysym Control_L = Super_L
+keysym Caps_Lock = Control_L
+keysym Super_L = Hyper_L
+add mod3 = Hyper_L
+add control = Control_L
+add mod4 = Super_L
+
+! Make printscreen key also a Super key
+keycode 107 = Super_R

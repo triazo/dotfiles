@@ -135,6 +135,10 @@
     m:0x8 + c:95
     Alt + F11
 
+# Auto resise monitors
+"~/scripts/automon.sh"
+    m:0x20 + c:58
+    Mod3 + m
 
 
 

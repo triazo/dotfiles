@@ -60,6 +60,5 @@ alias aptr='sudo aptitude remove'
 alias aptu='sudo aptitude update && sudo aptitude upgrade'
 alias kitty='cat'
 alias soff='xset dpms force off'
-cdf () {cd "$(ls | grep $1)"}
-text() {ssh triazo "echo $@ | mail 8455490721@vtext.com"}
-
+cdf () { cd "$(ls | grep $1)"; }
+text() { ssh triazo "echo $@ | mail 8455490721@vtext.com"; }

@@ -19,10 +19,11 @@
     (setq my-install-packages "true")))
 
 (if my-install-packages
-    (package-refresh-contents)
-    (dolist (p my-packages)
-      (when (not (package-installed-p p))
-	(package-install p))))
+    (progn
+      (package-refresh-contents)
+      (dolist (p my-packages)
+	(when (not (package-installed-p p))
+	  (package-install p)))))
 
 ;; Requires and imports
 (add-to-list 'load-path "~/.emacs.d/modes")
@@ -110,6 +111,3 @@
 ;; Auto-hilight symbol mode
 (global-auto-highlight-symbol-mode t)
 (put 'downcase-region 'disabled nil)
-
-;; Pushbullet api key
-(setq pushbullet-api-key "v1ASUcM3r5VS72ORMXIQse6JbEYD2NF9M6ujCFRqmTpng")

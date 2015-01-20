@@ -19,6 +19,7 @@
     (setq my-install-packages "true")))
 
 (if my-install-packages
+    (package-refresh-contents)
     (dolist (p my-packages)
       (when (not (package-installed-p p))
 	(package-install p))))

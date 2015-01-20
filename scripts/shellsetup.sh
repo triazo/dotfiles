@@ -58,9 +58,9 @@ fi
 
 
 # Clone the dotfiles directory if it is not already a git repo. otherwise, update
-mkdir -p usr/dotfiles
-cd ~/usr/dotfiles
-if [ -d .git ]
+mkdir -p usr
+cd ~/usr
+if [ -d dotfiles/.git ]
 then
     git pull
 else

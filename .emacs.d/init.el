@@ -3,6 +3,7 @@
 ; Note that 'C-h v' will bring the help for a variable
 
 ;; A better package management system.  Don't do everything manually
+(add-to-list 'load-path "~/.emacs.d/lisp/")
 (require 'package)
 (package-initialize)
 (push '("marmalade" . "http://marmalade-repo.org/packages/") package-archives )
@@ -17,7 +18,6 @@
     (package-install p)))
 
 ;; Requires and imports
-(add-to-list 'load-path "~/.emacs.d/lisp/")
 (add-to-list 'load-path "~/.emacs.d/modes")
 (load "~/.emacs.d/lisp/functions.el")
 (require 'expand-region)

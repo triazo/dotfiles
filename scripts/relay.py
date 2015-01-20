@@ -14,30 +14,32 @@
 import socket
 import threading
 import struct
+import time
 
 SOURCE_PORT = 10104
 RELAY_PORT   = 10105
 
 def client_listener(clients, lock):
     try:
-        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         s.bind(('', RELAY_PORT))
-        s.listen(5)
     except socket.error as msg:
-        print("Error binding socket: %s", msg)
+        print("Error binding chat socket: %s"% msg)
         return -1
 
     while True:
-        conn, addr = s.accept()
+        # The data doesn't matter, only the address is looked at.
+        # No harm in sending data to another address.  Probably.
+        data, addr = s.recvfrom(1024)
         lock.acquire()
-        clients.append((conn, addr))
+        clients[addr] =  time.time()
         lock.release()
         print("Recieved connection from %s"% str(addr))
 
 
 
 def main():
-    clients = []
+    clients = {}
     clilock = threading.Lock()
         
     sendthread = threading.Thread(target=client_listener,
@@ -53,7 +55,7 @@ def main():
         s.bind(('', SOURCE_PORT))
         s.listen(5)
     except socket.error as error:
-        print("Error binding socket: %s", error)
+        print("Error binding udp socket: %s"% error)
         return -1
 
     while True:
@@ -63,14 +65,20 @@ def main():
         conn.close()
         print(msg)    
         # Now relay the message to all clients
-        for cconn, caddr in clients:
+        # But only the ones that have contacted the server in the last
+        # 5 minutes
+        ss = socket.socket(socket.AF_INET, SOCK_DGRAM)
+        clilock.aquire()
+        clients = dict((k, v) for k, v in d.items() if v + 300 >
+        time.time())
+        for addres in clients:
             try:
-                cconn.send(struct.pack("!I", msglen))
-                cconn.send(msg)
+                #cconn.send(struct.pack("!I", msglen))
+                cconn.sendto(msg, address)
             except socket.error as error:
                 print("Error relaying message: %s"% str(error))
-                cconn.close()
-                clients.remove((cconn,caddr))
+                clients.remove(address)
+        clilock.release()
         
 
 

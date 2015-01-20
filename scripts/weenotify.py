@@ -1,10 +1,10 @@
 #!/usr/bin/python2
 
-import paramiko
 import socket
 import struct
 import pynotify
 import json
+import select
 import time
 
 host = "triazo.net"
@@ -13,30 +13,32 @@ logfile = '/home/adam/notifyerror.log'
 
 def sock_connect():
 
-    # Connect once initially
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    s.connect((host, 10105))
+    # Make socket.  Re-use socket for sending and stuff
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    # s.connect((host, 10105))
 
     print("Connected to %s"% host)
     # Wait on recv.  Work with lengths
     while True:
-        smsg = s.recv(4)
-        if len(smsg) != 4:
-            print(len(smsg))
-            return 1
-        msglen = struct.unpack_from("!I",smsg)[0]
-        msg = s.recv(msglen)
-        n = json.loads(msg)
-        print(n)
-        try:
-            pynotify.init("wee-notifier")
-            wn = pynotify.Notification(n['title'], n['description'], n['icon'])
-            wn.set_urgency(pynotify.Urgency(n['priority']))
-            wn.set_timeout(n['time_out'])
-            wn.show()
-        except Exception as error:
-            open(logfile, 'a').write('anotify: {0}\n'.format(error))
-            
+        rlist, _, _ = select.select([s], [], [], 5)
+        if len(rlist) == 0:
+            #send keep alive
+            s.sendto("keep alive", (host, 10105))
+        else:
+            for sock in rlist:
+                
+                msg = s.recvfrom(1024) # Need to somehow ensure the entire packet is there
+                n = json.loads(msg)
+                print(n)
+                try:
+                    pynotify.init("wee-notifier")
+                    wn = pynotify.Notification(n['title'], n['description'], n['icon'])
+                    wn.set_urgency(pynotify.Urgency(n['priority']))
+                    wn.set_timeout(n['time_out'])
+                    wn.show()
+                except Exception as error:
+                    open(logfile, 'a').write('anotify: {0}\n'.format(error))
+                    
 
 def main():
     i = 0

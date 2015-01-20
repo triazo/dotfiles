@@ -18,7 +18,6 @@ import time
 
 SOURCE_PORT = 10104
 RELAY_PORT   = 10105
-
 keep_alive_time = 300
 
 def filter_clients(clients, lock):
@@ -87,11 +86,15 @@ def main():
         # But only the ones that have contacted the server in the last
         # 5 minutes
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> Makes weechat notifications based on udp to prevent disconnections
         ss = socket.socket(socket.AF_INET, SOCK_DGRAM)
         clilock.aquire()
         clients = dict((k, v) for k, v in d.items() if v + 300 >
         time.time())
         for addres in clients:
+<<<<<<< HEAD
             try:
                 #cconn.send(struct.pack("!I", msglen))
                 cconn.sendto(msg, address)
@@ -110,6 +113,14 @@ def main():
             except socket.error as error:
                 print("Error relaying message: %s"% str(error))
                 clients.remove(clients[address])
+>>>>>>> Makes weechat notifications based on udp to prevent disconnections
+=======
+            try:
+                #cconn.send(struct.pack("!I", msglen))
+                cconn.sendto(msg, address)
+            except socket.error as error:
+                print("Error relaying message: %s"% str(error))
+                clients.remove(address)
 >>>>>>> Makes weechat notifications based on udp to prevent disconnections
         clilock.release()
         

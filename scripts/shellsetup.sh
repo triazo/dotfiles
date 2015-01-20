@@ -62,6 +62,7 @@ mkdir -p usr
 cd ~/usr
 if [ -d dotfiles/.git ]
 then
+    cd dotfiles
     git pull
 else
     git clone https://github.com/triazo/dotfiles

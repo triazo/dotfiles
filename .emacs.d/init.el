@@ -13,9 +13,15 @@
 (defvar my-packages '(expand-region popup auto-complete
 				    auto-highlight-symbol pushbullet php-mode))
 
+(setq my-install-packages nil)
 (dolist (p my-packages)
   (when (not (package-installed-p p))
-    (package-install p)))
+    (setq my-install-packages "true")))
+
+(if my-install-packages
+    (dolist (p my-packages)
+      (when (not (package-installed-p p))
+	(package-install p))))
 
 ;; Requires and imports
 (add-to-list 'load-path "~/.emacs.d/modes")

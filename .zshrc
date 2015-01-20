@@ -32,8 +32,10 @@ EDITOR='/home/adam/usr/bin/emacs'
 # source ~/.zsh/zsh-syntax-highlighting.zsh
 export PATH=/home/adam/usr/bin:/home/adam/scripts:$PATH
 
-[ -f "~/.localrc" ] && source ~/.localrc
-[ -f "~/.bash_aliases" ] && source ~/.bash_aliases
+
+[ -f ~/.localrc ] && source ~/.localrc
+[ -f ~/.bash_aliases ] && source ~/.bash_aliases
+
 
 # THINGS GET MESSY HERE! (I'm scared)
 

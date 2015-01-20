@@ -10,7 +10,7 @@
 
 ;; Automatically install packages if not theer
 (defvar my-packages '(expand-region popup auto-complete
-auto-highlight-symbol))
+				    auto-highlight-symbol pushbullet php-mode))
 
 (dolist (p my-packages)
   (when (not (package-installed-p p))
@@ -103,3 +103,6 @@ auto-highlight-symbol))
 ;; Auto-hilight symbol mode
 (global-auto-highlight-symbol-mode t)
 (put 'downcase-region 'disabled nil)
+
+;; Pushbullet api key
+(setq pushbullet-api-key "v1ASUcM3r5VS72ORMXIQse6JbEYD2NF9M6ujCFRqmTpng")

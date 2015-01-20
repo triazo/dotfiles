@@ -21,14 +21,24 @@ local start="%(?,%F{red}☺,%F{red}☹)"
 PROMPT="%K{green}%(?,%B%F{green}▒░,%F{red}█▒)%K{green}%F{yellow}%B%n@%m%b%F{green}%K{black}▓▒░%F{blue}%K{black}%B%~/%b%k%f%F{black}%K{default}▓▒░%B%F{blue}%#%b%F{default} "
 RPROMPT=""
 
-# source ~/.zsh/zsh-syntax-highlighting.zsh
+# Cascading preferences of editors
+EDITOR='/home/adam/usr/bin/emacs'
+[ -x "$EDITOR" ] || EDITOR='/home/adam/scripts/emacs'
+[ -x "$EDITOR" ] || EDITOR='/usr/bin/emacs'
+[ -x "$EDITOR" ] || EDITOR='/usr/bin/vim'
+[ -x "$EDITOR" ] || EDITOR='/usr/bin/vi'
 
+
+# source ~/.zsh/zsh-syntax-highlighting.zsh
 export PATH=/home/adam/usr/bin:/home/adam/scripts:$PATH
+
+[ -a ~/.localrc ] && source ~/.localrc
+[ -a ~/.bash_aliases ] && source ~/.bash_aliases
+
+# THINGS GET MESSY HERE! (I'm scared)
+
 export PATH=$PATH:/home/adam/usr/local/adt-bundle-linux-x86_64-20140321/sdk/tools:/home/adam/usr/local/adt-bundle-linux-x86_64-20140321/sdk/platform-tools
 
-source ~/.bash_aliases
-
-EDITOR='/usr/bin/emacs'
 WINEPREFIX='/home/adam/usr/wine'
 export PATH=$PATH:/opt/android-sdk/tools:/opt/android-sdk/platform-tools
 

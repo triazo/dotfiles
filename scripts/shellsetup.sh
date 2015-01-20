@@ -5,7 +5,7 @@
 # The structure of the dotfiles dir mirrors that of the home folder.
 # Thus we can just list files that need to be linked
 emacsfiles=".emacs.d/lisp .emacs.d/bindings.el .emacs.d/modes .emacs.d/styles .emacs.d/init.el .emacs.d/tetris-scores .emacs.d/custom.el"
-basicfiles="${emacsfiles} .bash_aliases .tmux.conf .zshrc"
+basicfiles="${emacsfiles} .bash_aliases .tmux.conf .zshrc scripts/shellsetup.sh"
 xfiles="${basicfiles} scripts/p-urxvtc scripts/dwm_run.sh scripts/automon.sh config/dunst/dunstrc usr/src/dwm .xinitrc .xbindkeysrc .xmodmap"
 
 # Convinence function used below
@@ -16,7 +16,7 @@ link () {
     if ! [ -h "$to" ]
     then
 	[ -a "$to" ] && rm -r "$to"
-	ln -s "~/usr/dotfiles/$to" "$to"
+	ln -s "$HOME/usr/dotfiles/$to" "$to"
     fi
 }
 

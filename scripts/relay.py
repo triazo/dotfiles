@@ -16,10 +16,26 @@ import threading
 import struct
 import time
 
+# For sending texts
+from numbers import fromnum, tonum, account_sid, auth_token
+from twilio.rest import TwilioRestClient
+import json
+
 SOURCE_PORT = 10104
 RELAY_PORT   = 10105
 keep_alive_time = 300
 
+def send_text(jmsg):
+    
+    client = TwilioRestClient(account_sid, auth_token)
+    msg = json.loads(jmsg)
+
+    msgstring = "%s\n%s"%(msg['title'],msg['description'])
+    print("sending message to phone: %s"%msgstring)
+    message = client.messages.create(to=tonum, from_=fromnum,
+                                     body=msgstring)
+    
+    
 def filter_clients(clients, lock):
     lock.acquire()
     todel = []
@@ -36,7 +52,6 @@ def filter_clients(clients, lock):
     lock.release()
 
 def client_listener(clients, lock, s):
-n    
     while True:
         # The data doesn't matter, only the address is looked at.
         # No harm in sending data to another address.  Probably.
@@ -85,43 +100,22 @@ def main():
         # Now relay the message to all clients
         # But only the ones that have contacted the server in the last
         # 5 minutes
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> Makes weechat notifications based on udp to prevent disconnections
-        ss = socket.socket(socket.AF_INET, SOCK_DGRAM)
-        clilock.aquire()
-        clients = dict((k, v) for k, v in d.items() if v + 300 >
-        time.time())
-        for addres in clients:
-<<<<<<< HEAD
-            try:
-                #cconn.send(struct.pack("!I", msglen))
-                cconn.sendto(msg, address)
-            except socket.error as error:
-                print("Error relaying message: %s"% str(error))
-                clients.remove(address)
-=======
-        # ss = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         filter_clients(clients, clilock)
+        if len(clients) == 0:
+            send_text(msg)
+
         clilock.acquire()
+        dellist = []
         for address in clients:
-            print("Sending to %s"% str(address))
             try:
-                #cconn.send(struct.pack("!I", msglen))
                 sock.sendto(msg, address)
             except socket.error as error:
                 print("Error relaying message: %s"% str(error))
-                clients.remove(clients[address])
->>>>>>> Makes weechat notifications based on udp to prevent disconnections
-=======
-            try:
-                #cconn.send(struct.pack("!I", msglen))
-                cconn.sendto(msg, address)
-            except socket.error as error:
-                print("Error relaying message: %s"% str(error))
-                clients.remove(address)
->>>>>>> Makes weechat notifications based on udp to prevent disconnections
+                dellist.append(address)
+
+        for add in dellist:
+            del clients[address]
+
         clilock.release()
         
 

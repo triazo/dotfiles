@@ -452,7 +452,7 @@ def a_notify(notification, title, description, priority=pynotify.URGENCY_LOW):
         s.close()
     except Exception as msg:
         with open('/home/adam/weenotify.err', 'a') as f:
-            f.write(msg)
+            f.write(str(msg))
     
 
 # -----------------------------------------------------------------------------

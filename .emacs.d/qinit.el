@@ -32,7 +32,7 @@
 (require 'ido)
 (require 'go-mode-load)
 (require 'popup)
-(require 'auto-complete)
+;;(require 'auto-complete)
 (require 'auto-highlight-symbol)
 
 (setq custom-file "~/.emacs.d/custom.el")
@@ -76,20 +76,6 @@
 (setq initial-major-mode 'text-mode)
 (setq initial-scratch-message (concat "-- " (format-time-string "%A %B %d %H:%M:%S") " --\n\n"))
 
-;; Enable autocomplete mode  ;; TODO: change this so that it works on a new install
-(ac-config-default)
-(add-to-list 'ac-dictionary-directories "/home/adam/.emacs.d/elpa/auto-complete-20140824.1658/dict")
-(require 'auto-complete-config)
-(defun my:ac-c-headers-init ()
-  (require 'auto-complete-c-headers)
-  (add-to-list 'ac-sources 'ac-source-c-headers))
-
-(add-hook 'c++-mode-hook 'my:ac-c-headers-init)
-(add-hook 'c-mode-hook 'my:ac-c-headers-init)
-
-
-;; Indentation settings
-(setq indent-tabs-mode nil)
 
 (global-visual-line-mode t)
 

@@ -37,6 +37,7 @@ rpiprint()
 }
 
 alias la='ls -a'
+alias ll='ls -al'
 alias cd='pushd'
 alias back='popd'
 alias flip='pushd_builtin'
@@ -46,7 +47,7 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias sl="sl -e"
-alias e="emacs"
+alias e="emacs -q -nw -l /home/adam/.emacs.d/qinit.el"
 alias mpc='mpc -h $(cat /tmp/mpd_host)'
 alias conky='conky -c ~/.conky.d/default'
 alias indent='while read line; do echo "        $line"; done'
@@ -60,5 +61,6 @@ alias aptr='sudo aptitude remove'
 alias aptu='sudo aptitude update && sudo aptitude upgrade'
 alias kitty='cat'
 alias soff='xset dpms force off'
+alias gdb='gdb -q'
 cdf () { cd "$(ls | grep $1)"; }
 text() { ssh triazo "echo $@ | mail 8455490721@vtext.com"; }

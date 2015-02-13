@@ -8,13 +8,21 @@ import threading
 
 
 logfile = '/home/adam/notifyerror.log'
-pingdelay = 5
+pingdelay = 40
 host = "trizao.net"
 port = 10105
 
-def pinger(address, socket):
+def pinger(address, s):
     while True:
-        socket.sendto("Ping!", ("triazo.net", 10105))
+        try:
+            s.sendto("Ping!", ("triazo.net", 10105))
+        except socket.error as error:
+            open(logfile, 'a').write('pinger: {0}\n'.format(error))
+            print('Pinger error: %s'%str(error))
+        except Exception as error:
+            oen(logfile, 'a').write('pinger: {0}\n'.format(error))
+            print('Pinger error: %s'%str(error))
+
         time.sleep(pingdelay)
 
 def sock_connect():

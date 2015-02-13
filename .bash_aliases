@@ -36,6 +36,14 @@ rpiprint()
     ssh -c rm /tmp/toprint.ps
 }
 
+unsymlink()
+{
+    link=$1
+    source="$(readlink -f $link)"
+    rm "$link"
+    cp "$source" "$link"
+}
+
 alias la='ls -a'
 alias ll='ls -al'
 alias cd='pushd'

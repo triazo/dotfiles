@@ -16,6 +16,8 @@ xinput set-prop $TPNT "Evdev Wheel Emulation" 1
 xinput set-prop $TPNT "Evdev Wheel Emulation Button" 2
 xinput set-prop $TPNT "Evdev Wheel Emulation Timeout" 200
 xinput set-prop $TPNT "Evdev Wheel Emulation Axes" 6 7 4 5
+synclient HorizTwoFingerScroll=1 
+synclient VertEdgeScroll=0 
 
 echo 'true' > /tmp/lid_sleep
 xbacklight -set 50

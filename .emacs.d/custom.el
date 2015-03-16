@@ -25,10 +25,5 @@
 	    '(scroll-bar ((t (:background "#ebebeb" :foreground "#6d8cc7" :height 1.0 :width condensed)))))))
 
 
-(copy-face 'default 'big-font-face )
 
-(defun big-font () (interactive)
-  (set-face-attribute 'default (selected-frame) :family "inconsolata" :height 300))
-  
-(defun normal-font () (interactive)
-  (set-face-attribute 'default (selected-frame) :family "lime" :height 75))
+

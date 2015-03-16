@@ -87,7 +87,48 @@ else
     done
 fi
 
+if [ $compile_x ]
+then
+    mkdir -p ~/usr/src
+    cd ~/usr/src
 
-echo "Install these packages to use everything:"
-echo "    gcc"
-echo "    dunst"
+    if ! [ -x "$(which mkeinfo)" ]
+    then
+	echo "install texinfo to compile emacs"
+	exit 0
+    fi
+
+    # Emacs compilation ##############################
+    #
+    # First pull source from git
+    if [ -d emacs/.git ]
+    then
+	cd emacs
+	git pull --rebase
+	git clean -fdx
+    else
+	git clone git://git.savannah.gnu.org/emacs.git
+	cd emacs
+    fi 
+
+    /bin/bash ./autogen.sh
+    configargs="--prefix=$HOME/usr/"
+    if [ $install_x ]
+    then
+	configargs="$configargs --without-toolkit-scroll-bars"
+    else
+	configargs="$configargs --without-x"
+    fi
+    /bin/bash ./configure $configargs
+    make
+    make install
+
+    cd ~/usr/src
+
+    # gdb compilation ##############################
+    #
+    # First update source
+
+    #git clone git://sourceware.org/git/binutils-gdb.git
+
+fi

@@ -1,5 +1,6 @@
 ; Settings for Text mode
 (add-hook 'text-mode-hook 'auto-fill-mode)
+(add-hook 'text-mode-hook 'flyspell-mode)
 ;; (add-hook 'text-mode-hook (lambda () (progn 
 ;; 				       (face-remap-add-relative 'default '(:family "Tex Gyre Chorus"))
 ;; 					(face-remap-add-relative 'default '(:height 120)))))

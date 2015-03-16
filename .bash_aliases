@@ -54,7 +54,7 @@ alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
-alias sl="sl -e"
+# alias sl="sl -e"
 alias e="emacs -q -nw -l /home/adam/.emacs.d/qinit.el"
 alias mpc='mpc -h $(cat /tmp/mpd_host)'
 alias conky='conky -c ~/.conky.d/default'

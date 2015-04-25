@@ -92,7 +92,7 @@ then
     mkdir -p ~/usr/src
     cd ~/usr/src
 
-    if ! [ -x "$(which mkeinfo)" ]
+    if ! [ -x "$(which makeinfo)" ]
     then
 	echo "install texinfo to compile emacs"
 	exit 0

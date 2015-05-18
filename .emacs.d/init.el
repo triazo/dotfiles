@@ -90,7 +90,6 @@
 
 ;; Indentation settings
 (setq indent-tabs-mode nil)
-
 (global-visual-line-mode t)
 
 ;; For Scheme programming
@@ -121,3 +120,6 @@
   '(define-key html-mode-map (kbd "C-c b") 'web-beautify-html))
 (eval-after-load 'css-mode
   '(define-key css-mode-map (kbd "C-c b") 'web-beautify-css))
+
+;; Delete trailing whitespace on save
+(add-hook 'before-save-hook 'delete-trailing-whitespace)

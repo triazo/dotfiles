@@ -66,7 +66,7 @@ then
     cd dotfiles
     git pull
 else
-    git clone https://github.com/triazo/dotfiles
+    git clone git@github.com:triazo/dotfiles.git
 fi
 
 # Change back to the home directory
@@ -128,7 +128,24 @@ then
     # gdb compilation ##############################
     #
     # First update source
+    
+    if [ -d binutils-gdb/.git ]
+    then
+	cd binutils-gdb
+	git pull --rebase
+	git clean -fdx
+    else
+	git clone git://sourceware.org/git/binutils-gdb.git
+	cd binutils-gdb
+    fi
 
-    #git clone git://sourceware.org/git/binutils-gdb.git
+    configargs="--prefix=$HOME/usr/ --with-python=python2"
+    /bin/bash ./configure $configargs
+    /usr/bin/make
+    /usr/bin/make install
 
+    # Now clone peda
+    cd ~/usr/src
+    git clone git@github.com:longld/peda.git
+    echo "source ~/usr/src/peda/peda.py" > "$HOME/.gdbinit"
 fi

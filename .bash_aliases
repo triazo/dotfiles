@@ -44,15 +44,86 @@ unsymlink()
     cp "$source" "$link"
 }
 
+ctxchg()
+{
+    # Default goes to home
+    todir="$HOME"
+    if [ -n "$1" ]
+    then
+	todir="$1"
+    fi
+
+    if [ ! -d $todir ]
+    then
+	echo "No such directory: $todir"
+	return 1
+    fi
+
+    curdirs=($(echo -e $PWD | tr '/' ' '))
+    todirs=($(echo -e $(realpath $todir) | tr '/' ' '))
+    overlapdirs=""
+
+    # find what directories overlap at the beginning. Do not need to
+    # run multiple times
+    for i in $(seq 1 $((${#curdirs[@]}>${#todirs[@]}?${#todirs[@]}:${#curdirs[@]})))
+    do
+	if [[ ${curdirs[$i]} = ${todirs[$i]} ]]
+	then
+	    overlapdirs+=(${curdirs[$i]})
+	else
+	    break
+	fi
+    done
+
+    # Remove the overlapping dirs from the directories where scripts
+    # are to be run
+    for dir in ${overlapdirs[*]}
+    do
+	curdirs=(${curdirs[@]/$dir})
+	todirs=(${todirs[@]/$dir})
+    done
+
+    # Run scripts
+    if [[ -n $curdirs ]]
+    then
+       for i in $(seq ${#curdirs[@]} 1)
+       do
+	   dircleanup ()
+	   {
+	       echo -n ''
+	   }
+	   dirname=$(echo "$overlapdirs ${curdirs[@]:0:$i}" | tr ' ' '/')
+	   [[ -f "$dirname/.subrc" ]] && (echo "leaving $dirname"; source "$dirname/.subrc")
+	   dircleanup
+       done
+    fi
+
+    if [[ -n $todirs ]]
+    then
+	for i in $(seq 1 ${#todirs[@]})
+	do
+	    dirsetup ()
+	    {
+		echo -n ''
+	    }
+	    dirname=$(echo "$overlapdirs ${todirs[@]:0:$i}" | tr ' ' '/')
+	    [[ -f "$dirname/.subrc" ]] && (echo "entering $dirname"; source "$dirname/.subrc")
+	    dirsetup
+	done
+    fi
+
+    pushd $@
+}
+
 alias la='ls -a'
 alias ll='ls -al'
-alias cd='pushd'
+alias cd='ctxchg'
 alias back='popd'
 alias flip='pushd_builtin'
 alias f='flip'
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
+alias fgrep='fgrep --color=auto'x
 alias egrep='egrep --color=auto'
 # alias sl="sl -e"
 alias e="emacs -q -nw -l /home/adam/.emacs.d/qinit.el"

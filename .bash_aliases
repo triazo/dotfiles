@@ -59,7 +59,7 @@ ctxchg()
 	return 1
     fi
 
-    curdirs=($(echo -e $PWD | tr '/' ' '))
+    curdirs=($(echo -e $(realpath $PWD) | tr '/' ' '))
     todirs=($(echo -e $(realpath $todir) | tr '/' ' '))
     overlapdirs=""
 

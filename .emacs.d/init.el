@@ -124,3 +124,6 @@
 
 ;; Delete trailing whitespace on save
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+;; For magit setup
+(setq magit-last-seen-setup-instructions "1.4.0")

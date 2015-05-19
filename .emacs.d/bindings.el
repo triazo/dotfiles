@@ -25,7 +25,10 @@
 
 ;; Basic binding for hide-show mode
 
-;; Bind 
-
+;; Bind
 (global-set-key (kbd "C-'") 'other-window)
 (global-set-key (kbd "C-,") (lambda () (interactive) (switch-to-buffer (other-buffer))))
+
+;; Magit settings
+(global-set-key (kbd "M-g s") 'magit-status)
+(global-set-key (kbd "M-g M-s") 'magit-status)

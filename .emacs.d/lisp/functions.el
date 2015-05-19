@@ -1,6 +1,6 @@
 (defun fullpath-relative-to-current-file (file-relative-path)
   "Returns the full path of FILE-RELATIVE-PATH, relative to file location where this function is called."
-  (concat (file-name-directory (or load-file-name buffer-file-name)) file-relative-path)) 
+  (concat (file-name-directory (or load-file-name buffer-file-name)) file-relative-path))
 
 (defun bury-compile-buffer-if-successful (buffer string)
   "Bury a compilation buffer if succeeded without warnings "
@@ -33,9 +33,9 @@
 
 (defun big-font () (interactive)
   (set-face-attribute 'default (selected-frame) :family "inconsolata" :height 300) )
-  
+
 (defun normal-font () (interactive)
-  (set-facokaye-attribute 'default (selected-frame) :family "lime" :height 75))
+  (set-face-attribute 'default (selected-frame) :family "lime" :height 75))
 
 
 (define-derived-mode chat-mode text-mode "chat"

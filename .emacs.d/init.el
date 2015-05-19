@@ -1,5 +1,5 @@
-; Triazo Emacs config.  This statement last updated Oct 19, 2014
-;
+; Triazo Emacs config.  This statement last updated Oct 19, 2014;
+
 ; Note that 'C-h v' will bring the help for a variable
 
 ;; A better package management system.  Don't do everything manually
@@ -11,7 +11,8 @@
 
 ;; Automatically install packages if not theer
 (defvar my-packages '(expand-region popup auto-complete
-				    auto-highlight-symbol pushbullet php-mode))
+				    auto-highlight-symbol pushbullet php-mode
+				    magit))
 
 (setq my-install-packages nil)
 (dolist (p my-packages)

@@ -93,7 +93,7 @@ ctxchg()
 	       echo -n ''
 	   }
 	   dirname=$(echo "$overlapdirs ${curdirs[@]:0:$i}" | tr ' ' '/')
-	   [[ -f "$dirname/.subrc" ]] && (echo "leaving $dirname"; source "$dirname/.subrc")
+	   [[ -f "$dirname/.subrc" ]] && source "$dirname/.subrc"
 	   dircleanup
        done
     fi
@@ -107,7 +107,7 @@ ctxchg()
 		echo -n ''
 	    }
 	    dirname=$(echo "$overlapdirs ${todirs[@]:0:$i}" | tr ' ' '/')
-	    [[ -f "$dirname/.subrc" ]] && (echo "entering $dirname"; source "$dirname/.subrc")
+	    [[ -f "$dirname/.subrc" ]] && source "$dirname/.subrc"
 	    dirsetup
 	done
     fi

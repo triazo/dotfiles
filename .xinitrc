@@ -27,10 +27,13 @@ feh --bg-scale media/wallpapers/weiss2.png
 while true; do urxvtd; done&
 xbindkeys &
 # xflux -z 12590 &
-# xsnow -nosanta -notrees -norudolf -nokeepsnowonscreen &
+xsnow -nosanta -notrees -norudolf -nokeepsnowonscreen &
 # /home/adam/usr/bin/btsync &
 (sleep 6; pidgin;) &
 #(sleep 3; trayer --height 19 --widthtype request --edge top &; nm-applet&; disown; disown) &
+
+eval $(ssh-agent)
+ssh-add ~/.ssh/id_rsa
 
 if ! pgrep header.py; then
     ~/scripts/header.py server &

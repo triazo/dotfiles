@@ -67,10 +67,9 @@
 (make-face 'mode-line-80col-face)
 
 (set-face-attribute 'mode-line nil
-    :family "Tex Gyre Chorus"
-    :foreground "grey60" :background "#d0d0d0"
-    :inverse-video nil
-    :box '(:line-width 6 :color "#d0d0d0" :style nil))
+     :foreground "grey60" :background "#d0d0d0"
+     :inverse-video nil
+     :box '(:line-width 6 :color "#d0d0d0" :style nil))
 
 (set-face-attribute 'mode-line-inactive nil
     :foreground "grey10" :background "#e4e4e4"
@@ -80,7 +79,7 @@
 (set-face-attribute 'mode-line-read-only-face nil
     :inherit 'mode-line-face
     :foreground "#4271ae")
-    
+
 (set-face-attribute 'mode-line-modified-face nil
     :inherit 'mode-line-face
     :foreground "#c82829")
@@ -117,4 +116,3 @@
 (set-face-attribute 'mode-line-80col-face nil
     :inherit 'mode-line-position-face
     :foreground "black" :background "#eab700")
-

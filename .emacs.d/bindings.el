@@ -32,3 +32,29 @@
 ;; Magit settings
 (global-set-key (kbd "M-g s") 'magit-status)
 (global-set-key (kbd "M-g M-s") 'magit-status)
+(define-key ctl-x-map (kbd "g") 'magit-status)
+(define-key ctl-x-map (kbd "C-g") 'magit-status)
+
+;; Dired mode bindings
+(define-key ctl-x-map (kbd "d") (lambda () (interactive) (dired (file-name-directory (or load-file-name buffer-file-name)))))
+(define-key ctl-x-map (kbd "C-d") (lambda () (interactive) (dired (file-name-directory (or load-file-name buffer-file-name)))))
+
+;; Fix minor modes overwriting my keybindings
+(add-hook 'org-mode-hook
+          '(lambda ()
+	     (define-key org-mode-map (kbd "C-'") nil)))
+
+(add-hook 'flyspell-mode-hook
+	  '(lambda ()
+	     (define-key flyspell-mode-map (kbd "C-,") nil)))
+
+(add-hook 'dired-mode-hook
+          '(lambda ()
+	     (define-key dired-mode-map (kbd "C-o") nil)))
+
+(add-hook 'read-only-mode-hook
+	  '(lambda ()
+	     (local-set-key (kbd "j")
+			    '(lambda () (interactive) (scroll-up 3)))
+	     (local-set-key (kbd "k")
+			    '(lambda () (interactive) (scroll-down 3)))))

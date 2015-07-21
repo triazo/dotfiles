@@ -127,3 +127,8 @@
 
 ;; For magit setup
 (setq magit-last-seen-setup-instructions "1.4.0")
+
+;; Trunkating lines
+(setq truncate-partial-width-windows nil)
+(set-default 'truncate-lines t)
+(put 'narrow-to-region 'disabled nil)

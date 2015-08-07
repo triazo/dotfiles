@@ -6,14 +6,14 @@
 # Thus we can just list files that need to be linked
 weechatfiles=".weechat/plugins.conf .weechat/aspell.conf .weechat/irc.conf .weechat/trigger.conf .weechat/sec.conf .weechat/exec.conf .weechat/weechat.conf .weechat/logger.conf .weechat/alias.conf .weechat/script.conf .weechat/xfer.conf .weechat/buffers.conf .weechat/relay.conf .weechat/charset.conf .weechat/python/anotify2.py scripts/weenotify.py scripts/relay.py"
 emacsfiles=".emacs.d/lisp .emacs.d/bindings.el .emacs.d/modes .emacs.d/styles .emacs.d/init.el .emacs.d/tetris-scores .emacs.d/custom.el .emacs.d/qinit.el"
-basicfiles="${emacsfiles} ${weechatfiles} .bash_aliases .tmux.conf .zshrc scripts/shellsetup.sh"
+basicfiles="${emacsfiles} ${weechatfiles} .bash_aliases .tmux.conf .zshrc scripts/shellsetup.sh scripts/share.sh"
 xfiles="${basicfiles} scripts/p-urxvtc scripts/dwm_run.sh scripts/automon.sh .config/dunst/dunstrc usr/src/dwm .xinitrc .xbindkeysrc .xmodmap"
 
 # Convinence function used below
 link () {
     to="$1"
     ! [ -d "$(dirname "$to")" ] && mkdir -p "$(dirname "$to")"
-    
+
     if ! [ -h "$to" ]
     then
 	[ -a "$to" ] && rm -r "$to"
@@ -50,7 +50,7 @@ do
 done
 
 # Have user install git
-if [[ -z $(which git) ]] 
+if [[ -z $(which git) ]]
 then
   echo "Please install git before running this script"
   exit 1
@@ -109,7 +109,7 @@ then
     else
 	git clone git://git.savannah.gnu.org/emacs.git
 	cd emacs
-    fi 
+    fi
 
     /bin/bash ./autogen.sh
     configargs="--prefix=$HOME/usr/"
@@ -128,7 +128,7 @@ then
     # gdb compilation ##############################
     #
     # First update source
-    
+
     if [ -d binutils-gdb/.git ]
     then
 	cd binutils-gdb

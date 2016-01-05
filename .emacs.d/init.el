@@ -88,7 +88,6 @@
 (add-hook 'c++-mode-hook 'my:ac-c-headers-init)
 (add-hook 'c-mode-hook 'my:ac-c-headers-init)
 
-
 ;; Indentation settings
 (setq indent-tabs-mode nil)
 (global-visual-line-mode t)
@@ -100,7 +99,7 @@
 (add-hook 'slime-mode-hook (lambda () (interactive)
 			     (local-set-key (kbd "C-o C-e") 'slime-eval-last-expression)))
 
-;; hs- stuff
+;; basic programming settings
 (add-hook 'prog-mode-hook (lambda()
 			    (linum-mode)
 			    (hs-minor-mode)

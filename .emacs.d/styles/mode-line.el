@@ -4,11 +4,13 @@
 (setq-default
  mode-line-format
  '(; Position, including warning for 80 columns
-   (:propertize "%4l:" face mode-line-position-face)
+   (:propertize "%3l:" face mode-line-position-face)
    (:eval (propertize "%3c" 'face
                       (if (>= (current-column) 80)
-                          'mode-line-80col-face
-                        'mode-line-position-face)))
+			  (if (>= (current-column) 100)
+			      'mode-line-100col-face
+			  'mode-line-80col-face)
+			'mode-line-position-face)))
    ; emacsclient [default -- keep?]
    mode-line-client
    "  "
@@ -34,7 +36,7 @@
                 face mode-line-mode-face)
    "%] "
    (:eval (propertize (format-mode-line minor-mode-alist)
-                      'face 'mode-line-minor-mode-face))
+                      'face 'mode-line-face))
    (:propertize mode-line-process
                 face mode-line-process-face)
    (global-mode-string global-mode-string)
@@ -62,19 +64,9 @@
 (make-face 'mode-line-filename-face)
 (make-face 'mode-line-position-face)
 (make-face 'mode-line-mode-face)
-(make-face 'mode-line-minor-mode-face)
 (make-face 'mode-line-process-face)
 (make-face 'mode-line-80col-face)
-
-(set-face-attribute 'mode-line nil
-     :foreground "grey60" :background "#d0d0d0"
-     :inverse-video nil
-     :box '(:line-width 6 :color "#d0d0d0" :style nil))
-
-(set-face-attribute 'mode-line-inactive nil
-    :foreground "grey10" :background "#e4e4e4"
-    :inverse-video nil
-    :box '(:line-width 6 :color "#e4e4e4" :style nil))
+(make-face 'mode-line-100col-face)
 
 (set-face-attribute 'mode-line-read-only-face nil
     :inherit 'mode-line-face
@@ -86,28 +78,23 @@
 
 (set-face-attribute 'mode-line-folder-face nil
     :inherit 'mode-line-face
-    :foreground "gray30")
+    :foreground "gray90")
 
 (set-face-attribute 'mode-line-filename-face nil
     :inherit 'mode-line-face
-    :foreground "grey20"
+    :foreground "grey70"
     :weight 'bold)
 
 (set-face-attribute 'mode-line-position-face nil
     :inherit 'mode-line-face
-    :family "ubuntu mono"
-    :foreground "grey20"
+    :family "lemon"
+    :foreground "grey70"
     :weight 'bold
     :height 100)
 
 (set-face-attribute 'mode-line-mode-face nil
     :inherit 'mode-line-face
-    :foreground "gray40")
-
-(set-face-attribute 'mode-line-minor-mode-face nil
-    :inherit 'mode-line-mode-face
-    :foreground "gray90"
-    :height 110)
+    :foreground "gray100")
 
 (set-face-attribute 'mode-line-process-face nil
     :inherit 'mode-line-face
@@ -115,4 +102,8 @@
 
 (set-face-attribute 'mode-line-80col-face nil
     :inherit 'mode-line-position-face
-    :foreground "black" :background "#eab700")
+    :foreground "white" :background "#eab700")
+
+(set-face-attribute 'mode-line-100col-face nil
+    :inherit 'mode-line-position-face
+    :foreground "white" :background "red")

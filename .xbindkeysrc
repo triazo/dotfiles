@@ -83,7 +83,7 @@
 # Changed to use mpd
 # # Pause Mplayer
 # "echo 'pause' >/tmp/mplayer-control"
-"mpc -h pi.triazo.net toggle"
+"mpc -h $(cat /tmp/mpd_host) toggle"
     m:0x0 + c:172
     XF86AudioPlay
 
@@ -139,7 +139,11 @@
 "~/scripts/automon.sh"
     m:0x20 + c:58
     Mod3 + m
-
+    
+# For funzies
+""
+    m:0x6d + c:65
+    Control+Shift+Alt+Mod3+Mod4 + space
 
 
 ##############################################################

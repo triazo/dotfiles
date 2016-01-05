@@ -16,18 +16,18 @@ xinput set-prop $TPNT "Evdev Wheel Emulation" 1
 xinput set-prop $TPNT "Evdev Wheel Emulation Button" 2
 xinput set-prop $TPNT "Evdev Wheel Emulation Timeout" 200
 xinput set-prop $TPNT "Evdev Wheel Emulation Axes" 6 7 4 5
-synclient HorizTwoFingerScroll=1 
-synclient VertEdgeScroll=0 
+synclient HorizTwoFingerScroll=1
+synclient VertEdgeScroll=0
 
 echo 'true' > /tmp/lid_sleep
 xbacklight -set 50
-feh --bg-scale media/wallpapers/weiss2.png
+feh --bg-scale media/wallpapers/kali.png
 # mpd
 # bluetooth off
 while true; do urxvtd; done&
 xbindkeys &
 # xflux -z 12590 &
-xsnow -nosanta -notrees -norudolf -nokeepsnowonscreen &
+# xsnow -nosanta -notrees -norudolf -nokeepsnowonscreen &
 # /home/adam/usr/bin/btsync &
 (sleep 6; pidgin;) &
 #(sleep 3; trayer --height 19 --widthtype request --edge top &; nm-applet&; disown; disown) &
@@ -45,7 +45,7 @@ fi
 
 # conky &
 # matchbox-window-manager &
- ~/scripts/dwm_run.sh run 2>/tmp/dwm_out.txt >/tmp/xlog.txt
-# fvwm
+~/scripts/dwm_run.sh run 2>/tmp/dwm_out.txt >/tmp/xlog.txt
+#fvwm
 # emacs -g 196x60+0+0
 # exec chromeos

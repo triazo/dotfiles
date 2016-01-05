@@ -10,7 +10,7 @@
  * whenever a new event has been fetched. This allows event dispatching
  * in O(1) time.
  *
- * Each child of the root window is called a client, except windows which have
+n * Each child of the root window is called a client, except windows which have
  * set the override_redirect flag.  Clients are organized in a linked client
  * list on each monitor, the focus history is remembered through a stack list
  * on each monitor. Each client contains a bit array to indicate the tags of a
@@ -63,9 +63,14 @@
 #define TAGMASK                 ((1 << LENGTH(tags)) - 1)
 #define TEXTW(X)                (textnw(X, strlen(X)) + dc.font.height)
 
+#define SIDELEFT                1<<0
+#define SIDERIGHT               1<<1
+#define SIDETOP                 1<<2
+#define SIDEBOTTOM              1<<3
+
 /* enums */
 enum { CurNormal, CurResize, CurMove, CurLast };        /* cursor */
-enum { ColBorder, ColFG, ColBG, ColLast };              /* color */
+enum { ColBorder, ColFG, ColBG, ColHi,  ColLast }; /* color */
 enum { NetSupported, NetWMName, NetWMState,
        NetWMFullscreen, NetActiveWindow, NetWMWindowType,
        NetWMWindowTypeDialog, NetLast };     /* EWMH atoms */
@@ -198,6 +203,7 @@ static void drawbar(Monitor *m);
 static void drawbars(void);
 static void drawsquare(Bool filled, Bool empty, Bool invert, unsigned long col[ColLast]);
 static void drawtext(const char *text, unsigned long col[ColLast], Bool invert);
+static void drawborder(unsigned char sides, unsigned long col[ColLast]);
 static void enternotify(XEvent *e);
 static void expose(XEvent *e);
 static void focus(Client *c);
@@ -823,10 +829,13 @@ drawbar(Monitor *m) {
 		drawtext(tags[i], col, urg & 1 << i);
 		drawsquare(m == selmon && selmon->sel && selmon->sel->tags & 1 << i,
 		           occ & 1 << i, urg & 1 << i, col);
-		dc.x += dc.w;
+        drawborder(SIDEBOTTOM, col);
+        dc.x += dc.w;
 	}
 	dc.w = blw = TEXTW(m->ltsymbol);
-	drawtext(m->ltsymbol, dc.norm, False);
+    drawtext(m->ltsymbol, dc.norm, False);
+    col = m == selmon ? dc.sel : dc.norm;
+    drawborder( SIDEBOTTOM , col);
 	dc.x += dc.w;
 	x = dc.x;
 	dc.w = TEXTW(stext);
@@ -836,7 +845,8 @@ drawbar(Monitor *m) {
 		dc.w = m->ww - x;
 	}
 	drawtext(stext, dc.norm, False);
-	if((dc.w = dc.x - x) > bh) {
+    drawborder(SIDEBOTTOM, col);
+    if((dc.w = dc.x - x) > bh) {
 		dc.x = x;
 		if(m->sel) {
 			col = m == selmon ? dc.sel : dc.norm;
@@ -845,9 +855,10 @@ drawbar(Monitor *m) {
 		}
 		else
 			drawtext(NULL, dc.norm, False);
+        drawborder(SIDETOP | SIDELEFT | SIDERIGHT, col);
 	}
 	XCopyArea(dpy, dc.drawable, m->barwin, dc.gc, 0, 0, m->ww, bh, 0, 0);
-	XSync(dpy, False);
+    XSync(dpy, False);
 }
 
 void
@@ -868,6 +879,20 @@ drawsquare(Bool filled, Bool empty, Bool invert, unsigned long col[ColLast]) {
 		XFillRectangle(dpy, dc.drawable, dc.gc, dc.x+1, dc.y+1, x+1, x+1);
 	else if(empty)
 		XDrawRectangle(dpy, dc.drawable, dc.gc, dc.x+1, dc.y+1, x, x);
+}
+
+void
+drawborder(unsigned char sides, unsigned long col[ColLast]) {
+    XSetForeground(dpy, dc.gc, col[ColHi]);
+    if (sides & SIDEBOTTOM)
+        XDrawLine(dpy, dc.drawable, dc.gc, dc.x, dc.y+dc.h-1, dc.x+dc.w, dc.y+dc.h-1);
+    if (sides & SIDELEFT)
+        XDrawLine(dpy, dc.drawable, dc.gc, dc.x, dc.y, dc.x, dc.y+dc.h-1);
+    if (sides & SIDERIGHT)
+        XDrawLine(dpy, dc.drawable, dc.gc, dc.x+dc.w, dc.y, dc.x+dc.w, dc.y+dc.h-1);
+    if (sides & SIDETOP)
+        XDrawLine(dpy, dc.drawable, dc.gc, dc.x, dc.y, dc.x+dc.w, dc.y);
+
 }
 
 void
@@ -1700,9 +1725,11 @@ setup(void) {
         dc.norm[ColBorder] = getcolor(normbordercolor, dc.xftnorm+ColBorder);
         dc.norm[ColBG] = getcolor(normbgcolor, dc.xftnorm+ColBG);
         dc.norm[ColFG] = getcolor(normfgcolor, dc.xftnorm+ColFG);
+        dc.norm[ColHi] = getcolor(normhicolor, dc.xftnorm+ColHi);
         dc.sel[ColBorder] = getcolor(selbordercolor, dc.xftsel+ColBorder);
         dc.sel[ColBG] = getcolor(selbgcolor, dc.xftsel+ColBG);
         dc.sel[ColFG] = getcolor(selfgcolor, dc.xftsel+ColFG);
+        dc.sel[ColHi] = getcolor(selhicolor, dc.xftsel+ColHi);
 
 	dc.drawable = XCreatePixmap(dpy, root, DisplayWidth(dpy, screen), bh, DefaultDepth(dpy, screen));
 	dc.gc = XCreateGC(dpy, root, 0, NULL);
@@ -2246,7 +2273,7 @@ toggleborder(const Arg *arg) {
     if (selmon->cborderpx > 0)
         selmon->cborderpx = 0;
     else
-        selmon->cborderpx = 4;
+        selmon->cborderpx = borderpx;
 
     // Loop through clients, set update width
     Client* cc = selmon->clients;
@@ -2254,7 +2281,7 @@ toggleborder(const Arg *arg) {
         cc->bw = (int)selmon->cborderpx;
 	cc = cc->next;
     }
-    
+
 	/* selmon->showbar = !selmon->showbar; */
 	updatebarpos(selmon);
 	XMoveResizeWindow(dpy, selmon->barwin, selmon->wx, selmon->by, selmon->ww, bh);

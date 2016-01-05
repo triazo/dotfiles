@@ -1,21 +1,23 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-//static const char font[]            = "Cantarell 9";
-static const char font[]            = "TeX Gyre Chorus Italic 11";
-static const char dmenu_font[]      = "TeXGyreChorus-Italic-11";
-static const char normbordercolor[] = "#ebebeb";
-static const char normbgcolor[]     = "#d0d0d0";
-static const char normfgcolor[]     = "#484848";
-static const char selbordercolor[]  = "#d0d0d0";
-static const char selbgcolor[]      = "#ebebeb";
-static const char selfgcolor[]      = "#484848";
+static const char font[]            = "lemon 6";
+//static const char font[]            = "TeX Gyre Chorus Italic 11";
+static const char dmenu_font[]      = "Canterell 9";
+static const char normbordercolor[] = "#101010";
+static const char normbgcolor[]     = "#000000";
+static const char normhicolor[]     = "#0074FF";
+static const char normfgcolor[]     = "#b3b3b3";
+static const char selbordercolor[]  = "#000000";
+static const char selbgcolor[]      = "#000000";
+static const char selfgcolor[]      = "#b3b3b3";
+static const char selhicolor[]      = "#FF213B";
 static const unsigned int borderpx  = 4;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const Bool showbar           = True;     /* False means no bar */
 static const Bool topbar            = True;     /* False means bottom bar */
 
-/* tagging */ 
+/* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
 static const Rule rules[] = {
@@ -126,4 +128,3 @@ static Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
-

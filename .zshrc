@@ -6,8 +6,8 @@ compinit
 # End of lines added by compinstall
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
-HISTSIZE=100000
-SAVEHIST=100000
+HISTSIZE=1000000
+SAVEHIST=1000000
 bindkey -e
 # End of lines configured by zsh-newuser-install
 
@@ -30,7 +30,12 @@ EDITOR='/home/adam/usr/bin/emacs'
 
 
 # source ~/.zsh/zsh-syntax-highlighting.zsh
-export PATH=/home/adam/usr/bin:/home/adam/scripts:$PATH
+export PATH=/home/adam/usr/bin:/home/adam/scripts:/home/adam/go/bin:$PATH
+
+# For job
+export GOROOT=/home/adam/usr/local/go
+export GOPATH=/home/adam/go
+export CC=/usr/bin/clang
 
 
 [ -f ~/.localrc ] && source ~/.localrc

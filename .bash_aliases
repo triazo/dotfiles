@@ -142,5 +142,7 @@ alias soff='xset dpms force off'
 alias gdb='gdb -q'
 alias cdsia='cd /home/adam/go/src/github.com/NebulousLabs/Sia'
 alias cdsiabe='cd /home/adam/go/src/github.com/NebulousLabs/Sia-Block-Explorer'
+alias idn='sudo ifdown --force wlan0'
+alias iup='sudo ifup wlan0'
 cdf () { cd "$(ls | grep $1)"; }
 text() { ssh triazo "echo $@ | mail 8455490721@vtext.com"; }

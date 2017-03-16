@@ -30,7 +30,7 @@ EDITOR='/home/adam/usr/bin/emacs'
 
 
 # source ~/.zsh/zsh-syntax-highlighting.zsh
-export PATH=/home/adam/usr/bin:/home/adam/scripts:/home/adam/go/bin:$PATH
+export PATH=$HOME/usr/bin:$HOME/scripts:$HOME/go/bin:$PATH
 
 # For job
 export GOROOT=/home/adam/usr/local/go

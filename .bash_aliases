@@ -126,7 +126,7 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'x
 alias egrep='egrep --color=auto'
 # alias sl="sl -e"
-alias e="emacs -q -nw -l /home/adam/.emacs.d/qinit.el"
+alias e="emacs -q -nw -l $HOME/.emacs.d/qinit.el"
 alias mpc='mpc -h $(cat /tmp/mpd_host)'
 alias conky='conky -c ~/.conky.d/default'
 alias xek="xev | grep -A2 --line-buffered '^KeyRelease' | sed -n '/keycode /s/^.*keycode \([0-9]*\).* (.*, \(.*\)).*$/\1 \2/p'"

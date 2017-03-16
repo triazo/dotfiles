@@ -2,7 +2,7 @@
 
 FILE=$1
 
-SERVER=triazo
+SERVER=zinc
 
-scp $FILE triazo:/var/www/triazo/files/$(basename $FILE) >/dev/null
+scp $FILE $SERVER:/var/www/triazo/files/$(basename $FILE) >/dev/null
 echo http://triazo.net/files/$(basename $FILE)

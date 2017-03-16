@@ -1,3 +1,3 @@
-#!/usr/bin/bash
+#!/bin/bash
 
-bash /home/adam/scripts/xinit 2>&1 >/tmp/xlog.txt
+bash $HOME/scripts/xinit 2>&1 >/tmp/xlog.txt

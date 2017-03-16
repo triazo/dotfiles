@@ -90,7 +90,7 @@
 # Toggle mpd host
 "/home/adam/scripts/mpdhost.sh"
     m:0x0 + c:173
-    XF86AudioPrev    
+    XF86AudioPrev
 # Toggle sleep when lid closes
 "~/scripts/lid_sleep.sh toggle"
     m:0x0 + c:220
@@ -139,12 +139,21 @@
 "~/scripts/automon.sh"
     m:0x20 + c:58
     Mod3 + m
-    
+
 # For funzies
 ""
     m:0x6d + c:65
     Control+Shift+Alt+Mod3+Mod4 + space
 
+    # Multitouch
+    "xdotool key ctrl+alt+Right"
+    b:10
+    "xdotool key ctrl+alt+Left"
+    b:11
+    "xdotool key ctrl+alt+Up"
+    b:8
+    "xdotool key ctrl+alt+Down"
+    b:9
 
 ##############################################################
 ###### End my commnads

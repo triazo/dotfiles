@@ -4,15 +4,15 @@
 static const char font[]            = "lemon 6";
 //static const char font[]            = "TeX Gyre Chorus Italic 11";
 static const char dmenu_font[]      = "Canterell 9";
-static const char normbordercolor[] = "#101010";
+static const char normbordercolor[] = "#0074FF";
 static const char normbgcolor[]     = "#000000";
 static const char normhicolor[]     = "#0074FF";
 static const char normfgcolor[]     = "#b3b3b3";
-static const char selbordercolor[]  = "#000000";
+static const char selbordercolor[]  = "#FF213B";
 static const char selbgcolor[]      = "#000000";
 static const char selfgcolor[]      = "#b3b3b3";
 static const char selhicolor[]      = "#FF213B";
-static const unsigned int borderpx  = 4;        /* border pixel of windows */
+static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const Bool showbar           = True;     /* False means no bar */
 static const Bool topbar            = True;     /* False means bottom bar */
@@ -57,9 +57,9 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static const char *dmenucmd[] = { "/home/adam/usr/bin/dmenu_run", "-fn", dmenu_font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
-static const char *termcmd[]  = { "/home/adam/scripts/p-urxvtc", NULL };
-static const char *killcmd[]  = { "/home/adam/scripts/dwm_run", "kill" };
+static const char *dmenucmd[] = { "/home/triazo/usr/bin/dmenu_run", "-fn", dmenu_font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
+static const char *termcmd[]  = { "/home/triazo/scripts/p-urxvtc", NULL };
+static const char *killcmd[]  = { "/home/triazo/scripts/dwm_run", "kill" };
 
 #include "push.c"
 

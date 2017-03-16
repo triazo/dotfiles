@@ -47,5 +47,6 @@ fi
 # matchbox-window-manager &
 ~/scripts/dwm_run.sh run 2>/tmp/dwm_out.txt
 #fvwm
+#exec herbstluftwm --locked
 # emacs -g 196x60+0+0
 # exec chromeos

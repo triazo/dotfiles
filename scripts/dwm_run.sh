@@ -5,7 +5,7 @@ if [ "$1" = run ]
 then
     while true
     do
-	/home/adam/usr/bin/dwm
+	$HOME/usr/bin/dwm
     done
 elif [ "$1" = kill ]
 then

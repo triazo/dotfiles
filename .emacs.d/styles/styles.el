@@ -22,8 +22,6 @@
 ;;(load-file (fullpath-relative-to-current-file "bluezenburn.el"))
 
 
-(set-face-attribute 'default nil :height 100)
-
 ; Disable Startup screen
 (setq inhibit-startup-screen t)
 

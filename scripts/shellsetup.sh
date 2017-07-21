@@ -7,7 +7,7 @@
 weechatfiles=".weechat/plugins.conf .weechat/aspell.conf .weechat/irc.conf .weechat/trigger.conf .weechat/sec.conf .weechat/exec.conf .weechat/weechat.conf .weechat/logger.conf .weechat/alias.conf .weechat/script.conf .weechat/xfer.conf .weechat/buffers.conf .weechat/relay.conf .weechat/charset.conf .weechat/python/anotify2.py scripts/weenotify.py scripts/relay.py"
 emacsfiles=".emacs.d/lisp .emacs.d/bindings.el .emacs.d/modes .emacs.d/styles .emacs.d/init.el .emacs.d/tetris-scores .emacs.d/custom.el .emacs.d/qinit.el"
 basicfiles="${emacsfiles} ${weechatfiles} .bash_aliases .tmux.conf .zshrc scripts/shellsetup.sh scripts/share.sh"
-xfiles="${basicfiles} scripts/p-urxvtc scripts/dwm_run.sh scripts/automon.sh scripts/xinit .config/dunst/dunstrc usr/src/dwm .xinitrc .xbindkeysrc .xmodmap scripts/touchpad.sh scripts/header.py"
+xfiles="${basicfiles} scripts/p-urxvtc scripts/dwm_run.sh scripts/automon.sh scripts/xinit .config/dunst/dunstrc usr/src/dwm .xinitrc .xbindkeysrc .xmodmap scripts/touchpad.sh scripts/header.py scripts/screenie.sh"
 
 # Convinence function used below
 link () {

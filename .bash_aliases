@@ -48,12 +48,12 @@ ctxchg()
 {
     # Default goes to home
     todir="$HOME"
-    if [ -n "$1" ]
+    if [[ -n "$1" ]]
     then
 	todir="$1"
     fi
 
-    if [ ! -d $todir ]
+    if [[ ! -d $todir ]]
     then
 	echo "No such directory: $todir"
 	return 1
@@ -117,7 +117,7 @@ ctxchg()
 
 alias la='ls -a'
 alias ll='ls -al'
-alias cd='ctxchg'
+alias cd='pushd'
 alias back='popd'
 alias flip='pushd_builtin'
 alias f='flip'

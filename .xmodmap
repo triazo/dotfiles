@@ -13,4 +13,4 @@ add control = Control_L
 add mod4 = Super_L
 
 ! Make printscreen key also a Super key
-keycode 107 = Super_R
+!keycode 107 = Super_R

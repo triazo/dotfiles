@@ -1,9 +1,9 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const char font[]            = "lemon 6";
+static const char font[]            = "Roboto 12";
 //static const char font[]            = "TeX Gyre Chorus Italic 11";
-static const char dmenu_font[]      = "lemon 6";
+static const char dmenu_font[]      = "Roboto 12";
 static const char normbordercolor[] = "#0074FF";
 static const char normbgcolor[]     = "#000000";
 static const char normhicolor[]     = "#0074FF";
@@ -57,7 +57,11 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
+<<<<<<< Updated upstream
 static const char *dmenucmd[] = { "/usr/bin/dmenu_run", "-fn", dmenu_font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
+=======
+static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenu_font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
+>>>>>>> Stashed changes
 static const char *termcmd[]  = { "/home/triazo/scripts/p-urxvtc", NULL };
 static const char *killcmd[]  = { "/home/triazo/scripts/dwm_run", "kill" };
 

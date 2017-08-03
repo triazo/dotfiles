@@ -1,6 +1,7 @@
 #!/bin/sh
 
 FILE=$1
+BASEPATH=/var/www/triazo/files/
 
 SERVER=zinc
 BASEPATH=/var/www/triazo/files/

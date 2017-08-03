@@ -27,7 +27,9 @@ feh --bg-scale media/wallpapers/black.png
 while true; do urxvtd; done&
 xbindkeys &
 # xflux -z 12590 &
-xsnow -nosanta -notrees -norudolf -nokeepsnowonscreen &
+xsnow  -nosanta -notrees -norudolf -nowind -solidbg -bg black -nokeepsnowonscreen -sc \#0074FF &
+# Sleep to ensure different rng seed
+sleep 1 && xsnow  -nosanta -notrees -norudolf -nowind -solidbg -bg black -nokeepsnowonscreen -sc \#FF213B &
 # /home/adam/usr/bin/btsync &
 # (sleep 6; pidgin;) &
 #(sleep 3; trayer --height 19 --widthtype request --edge top &; nm-applet&; disown; disown) &
@@ -35,9 +37,9 @@ xsnow -nosanta -notrees -norudolf -nokeepsnowonscreen &
 eval $(ssh-agent)
 #ssh-add ~/.ssh/id_rsa
 
-# if ! pgrep header.py; then
-#     ~/scripts/header.py server &
-# fi
+if ! pgrep header.py; then
+    ~/scripts/header.py server &
+fi
 
 if ! pgrep weenotify.py; then
     ~/scripts/weenotify.py &
@@ -45,8 +47,8 @@ fi
 
 # conky &
 # matchbox-window-manager &
-# ~/scripts/dwm_run.sh run 2>/tmp/dwm_out.txt
-exec cinnamon-session
+~/scripts/dwm_run.sh run 2>/tmp/dwm_out.txt
+#exec cinnamon-session
 #fvwm
 #exec herbstluftwm --locked
 # emacs -g 196x60+0+0

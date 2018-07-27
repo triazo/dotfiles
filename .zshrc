@@ -18,7 +18,21 @@ setopt globdots
 
 local start="%(?,%F{red}☺,%F{red}☹)"
 
-PROMPT="%K{green}%(?,%B%F{green}▒░,%F{red}█▒)%K{green}%F{yellow}%B%n@%m%b%F{green}%K{black}▓▒░%F{blue}%K{black}%B%~/%b%k%f%F{black}%K{default}▓▒░%B%F{blue}%#%b%F{default} "
+# Decode color based on hostname.
+HOSTNAME=$(hostname)
+COLOR=yellow
+if [[ "$HOSTNAME" == *"tin"* ]]
+then
+    COLOR=magenta
+elif [[ "$HOSTNAME" == *"zinc"* ]]
+then
+    COLOR=blue
+elif [[ "$HOSTNAME" == *"iron"* ]]
+then
+    COLOR=black
+fi
+
+PROMPT="%K{green}%(?,%B%F{green}▒░,%F{red}█▒)%K{green}%F{yellow}%B%n@%F{$COLOR}%m%b%F{green}%K{black}▓▒░%F{blue}%K{black}%B%~/%b%k%f%F{black}%K{default}▓▒░%B%F{blue}%#%b%F{default} "
 RPROMPT=""
 
 # Cascading preferences of editors

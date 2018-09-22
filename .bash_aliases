@@ -115,6 +115,31 @@ ctxchg()
     pushd $@
 }
 
+newres() {       
+    ml="$1x$2_$3"
+    echo $ml
+    modeline="$(cvt -i $1 $2 $3 | tail -n 1 | sed -e 's/Modeline//g' | sed -e 's/^\ //g')"
+    echo $modeline
+    cmd=$(echo "xrandr --newmode $modeline")
+    eval $cmd
+    echo "HERE"
+    xrandr --output HDMI-1 --mode "$ml"
+}
+
+function update_terraform {
+    pushd /tmp
+    dl_url="https://www.terraform.io/downloads.html"
+    bin_url=$(curl -s $dl_url | grep -A 5 "Linux" | grep "64-bit" | egrep -o "\".*\"" | tr -d "\"")
+    curl $bin_url > terraform_bin.zip
+    gunzip -f -S .zip terraform_bin.zip
+    chmod +x terraform_bin
+    mv terraform_bin $(which terraform)
+    echo $(which terraform)
+    terraform --version
+    popd
+}
+
+
 alias la='ls -a'
 alias ll='ls -al'
 alias cd='pushd'
@@ -141,8 +166,8 @@ alias aptu='sudo aptitude update && sudo aptitude upgrade'
 alias kitty='cat'
 alias soff='xset dpms force off'
 alias gdb='gdb -q'
-alias cdsia='cd /home/adam/go/src/github.com/NebulousLabs/Sia'
-alias cdsiabe='cd /home/adam/go/src/github.com/NebulousLabs/Sia-Block-Explorer'
+alias cdsia="cd $HOME/go/src/github.com/NebulousLabs/Sia"
+alias cdsiabe="cd $HOME/go/src/github.com/NebulousLabs/Sia-Block-Explorer"
 alias idn='sudo ifdown --force wlan0'
 alias iup='sudo ifup wlan0'
 cdf () { cd "$(ls | grep $1)"; }

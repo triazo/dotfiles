@@ -58,3 +58,5 @@
 			    '(lambda () (interactive) (scroll-up 3)))
 	     (local-set-key (kbd "k")
 			    '(lambda () (interactive) (scroll-down 3)))))
+
+(global-set-key (kbd "C-c e") 'eval-and-replace)

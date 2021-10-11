@@ -8,24 +8,26 @@
 
 # Volume Down
 #"amixer set Master 10-"
-"~/scripts/vol.sh minus"
+"~/scripts/pa-vol.sh minus"
     m:0x0 + c:122
     XF86AudioLowerVolume
 
 # Volume Up
 #"amixer set Master 10+"
-"~/scripts/vol.sh plus"
+"~/scripts/pa-vol.sh plus"
     m:0x0 + c:123
     XF86AudioRaiseVolume
 
-# HPD host volume up/down
-"~/scripts/mpdvol.sh pi.triazo.net plus"
-    m:0x20 + c:123
-    Mod3 + XF86AudioRaiseVolume
+# Brightness up (oled)
+"$HOME/scripts/brightness.sh up"
+    m:0x0 + c:233
+    XF86MonBrightnessUp
 
-"~/scripts/mpdvol.sh pi.triazo.net minus"
-    m:0x20 + c:122
-    Mod3 + XF86AudioLowerVolume
+# Brightness down (oled)
+"$HOME/scripts/brightness.sh down"
+    m:0x0 + c:232
+    XF86MonBrightnessDown
+
 
 # Mute
 #"amixer sset Master toggle"
@@ -36,20 +38,25 @@
 ########## For some reason, these keys started working without xbindkeys. ##
 # Brightness Down
 # "xbacklight -dec 10"
-"~/scripts/header.py msg $(visualize.py $(xbacklight -get) 100  -l 60)"
-    m:0x0 + c:232
-    XF86MonBrightnessDown
+# "~/scripts/header.py msg $(visualize.py $(xbacklight -get) 100  -l 60)"
+#     m:0x0 + c:232
+#     XF86MonBrightnessDown
 
-# Brightness Up
-# "xbacklight -inc 10"
-"~/scripts/header.py msg $(visualize.py $(xbacklight -get) 100  -l 60)"
-    m:0x0 + c:233
-    XF86MonBrightnessUp
+# # Brightness Up
+# # "xbacklight -inc 10"
+# "~/scripts/header.py msg $(visualize.py $(xbacklight -get) 100  -l 60)"
+#     m:0x0 + c:233
+#     XF86MonBrightnessUp
 
 # Lock Screen (using slock)
 "slock"
     m:0x0 + c:160
     XF86ScreenSaver
+
+"~/scripts/screenie.sh"
+    m:0x40 + c:107
+    Mod4 + Super_R
+    
 
 # Switch Keyboards
 "~/scripts/xkbswap"
@@ -83,23 +90,23 @@
 # Changed to use mpd
 # # Pause Mplayer
 # "echo 'pause' >/tmp/mplayer-control"
-"mpc -h $(cat /tmp/mpd_host) toggle"
-    m:0x0 + c:172
-    XF86AudioPlay
+# "mpc -h $(cat /tmp/mpd_host) toggle"
+#     m:0x0 + c:172
+#     XF86AudioPlay
 
-# Toggle mpd host
-"/home/adam/scripts/mpdhost.sh"
-    m:0x0 + c:173
-    XF86AudioPrev
-# Toggle sleep when lid closes
-"~/scripts/lid_sleep.sh toggle"
-    m:0x0 + c:220
-    XF86WebCam
+# # Toggle mpd host
+# "/home/adam/scripts/mpdhost.sh"
+#     m:0x0 + c:173
+#     XF86AudioPrev
+# # Toggle sleep when lid closes
+# "~/scripts/lid_sleep.sh toggle"
+#     m:0x0 + c:220
+#     XF86WebCam
 
-# Alternate mpd pause
-"mpc -h pi.triazo.net toggle"
-    m:0x20 + c:95
-    Mod3 + F11
+# # Alternate mpd pause
+# "mpc -h pi.triazo.net toggle"
+#     m:0x20 + c:95
+#     Mod3 + F11
 
 
 # Hotkey sleep mode
@@ -122,18 +129,18 @@
     m:0x20 + c:29
     Mod3 + f
 
-# MPD commands for lounge
-"~/scripts/mpdvol.sh bronze.triazo.net minus"
-    m:0x8 + c:122
-    Alt + XF86AudioLowerVolume
+# # MPD commands for lounge
+# "~/scripts/mpdvol.sh bronze.triazo.net minus"
+#     m:0x8 + c:122
+#     Alt + XF86AudioLowerVolume
 
-"~/scripts/mpdvol.sh bronze.triazo.net plus"
-    m:0x8 + c:123
-    Alt + XF86AudioRaiseVolume
+# "~/scripts/mpdvol.sh bronze.triazo.net plus"
+#     m:0x8 + c:123
+#     Alt + XF86AudioRaiseVolume
 
-"mpc -h bronze.triazo.net toggle"
-    m:0x8 + c:95
-    Alt + F11
+# "mpc -h bronze.triazo.net toggle"
+#     m:0x8 + c:95
+#     Alt + F11
 
 # Auto resise monitors
 "~/scripts/automon.sh"

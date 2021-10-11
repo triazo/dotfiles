@@ -9,7 +9,8 @@ import $FILE
 SERVER=zinc
 BASEPATH=/var/www/triazo/files/
 
-scp $FILE $SERVER:$BASEPATH$(basename $FILE) >/dev/null
+scp $FILE $SERVER:$BASEPATH$(basename $FILE) 
 echo -n "https://triazo.net/files/$(basename $FILE)" | xclip -r -selection "clip board"
-echo -n "https://triazo.net/files/$(basename $FILE)" | xclip -r 
+echo -n "https://triazo.net/files/$(basename $FILE)" | xclip -r
+echo -n "https://triazo.net/files/$(basename $FILE)" 
 notify-send "uploaded https://triazo.net/files/$(basename $FILE)"

@@ -2,12 +2,18 @@
 
 echo "Started xinitrc"
 
-export PATH=/home/adam/usr/bin:/home/adam/scripts:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
-export PATH=/home/adam/usr/bin:/home/adam/scripts:$PATH
-export PATH=$PATH:/home/adam/usr/local/adt-bundle-linux-x86_64-20140321/sdk/tools:/home/adam/usr/local/adt-bundle-linux-x86_64-20140321/sdk/platform-tools
+export PATH=$HOME/usr/bin:$HOME/scripts:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+export PATH=$HOME/usr/bin:$HOME/scripts:$PATH
+export PATH=$PATH:$HOME/usr/local/adt-bundle-linux-x86_64-20140321/sdk/tools:$HOME/usr/local/adt-bundle-linux-x86_64-20140321/sdk/platform-tools
 export PATH=$PATH:/opt/android-sdk/tools:/opt/android-sdk/platform-tools
 
-xmodmap ~/.xmodmap
+if [[ "$XDG_SESSION_TYPE" = "wayland" ]]; then
+    # Only works in gnome, so basically useless in xinit.
+    gsettings set org.gnome.desktop.input-sources xkb-options "['caps:ctrl_modifier']"
+else
+    xmodmap ~/.xmodmap
+fi
+
 TPAD=$(xinput list | grep Touch | cut -d '=' -f 2 | awk '{print $1}')
 xinput -disable $TPAD
 xinput set-prop $TPAD "Synaptics Tap Time" "0"
@@ -21,7 +27,7 @@ xinput set-prop $TPNT "Evdev Wheel Emulation Axes" 6 7 4 5
 
 echo 'true' > /tmp/lid_sleep
 xbacklight -set 50
-feh --bg-scale media/wallpapers/black.png
+feh --bg-scale media/wallpapers/{*.png,*.jpg}
 # mpd
 # bluetooth off
 while true; do urxvtd; done&
@@ -30,7 +36,7 @@ xbindkeys &
 xsnow  -nosanta -notrees -norudolf -nowind -solidbg -bg black -nokeepsnowonscreen -sc \#0074FF &
 # Sleep to ensure different rng seed
 sleep 1 && xsnow  -nosanta -notrees -norudolf -nowind -solidbg -bg black -nokeepsnowonscreen -sc \#FF213B &
-# /home/adam/usr/bin/btsync &
+# $HOME/usr/bin/btsync &
 # (sleep 6; pidgin;) &
 #(sleep 3; trayer --height 19 --widthtype request --edge top &; nm-applet&; disown; disown) &
 
@@ -42,7 +48,7 @@ if ! pgrep header.py; then
 fi
 
 if ! pgrep weenotify.py; then
-    ~/scripts/weenotify.py &
+     ~/scripts/weenotify.py &
 fi
 
 # conky &

@@ -153,6 +153,7 @@ alias fgrep='fgrep --color=auto'x
 alias egrep='egrep --color=auto'
 # alias sl="sl -e"
 alias e="emacs -q -nw -l $HOME/.emacs.d/qinit.el"
+alias se="sudo emacs -q -nw"
 alias mpc='mpc -h $(cat /tmp/mpd_host)'
 alias conky='conky -c ~/.conky.d/default'
 alias xek="xev | grep -A2 --line-buffered '^KeyRelease' | sed -n '/keycode /s/^.*keycode \([0-9]*\).* (.*, \(.*\)).*$/\1 \2/p'"
@@ -166,8 +167,8 @@ alias aptu='sudo aptitude update && sudo aptitude upgrade'
 alias kitty='cat'
 alias soff='xset dpms force off'
 alias gdb='gdb -q'
-alias cdsia="cd $HOME/go/src/github.com/NebulousLabs/Sia"
-alias cdsiabe="cd $HOME/go/src/github.com/NebulousLabs/Sia-Block-Explorer"
+alias cdsia="cd $HOME/go/src/gitlab.com/NebulousLabs/Sia"
+alias cdsiabe="cd $HOME/go/src/gitlab.com/NebulousLabs/Sia-Block-Explorer"
 alias idn='sudo ifdown --force wlan0'
 alias iup='sudo ifup wlan0'
 cdf () { cd "$(ls | grep $1)"; }

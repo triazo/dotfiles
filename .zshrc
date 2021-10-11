@@ -1,5 +1,5 @@
 # The following lines were added by compinstall
-zstyle :compinstall filename '/home/adam/.zshrc'
+zstyle :compinstall filename '/home/triazo/.zshrc'
 
 autoload -Uz compinit
 compinit
@@ -36,23 +36,20 @@ PROMPT="%K{green}%(?,%B%F{green}▒░,%F{red}█▒)%K{green}%F{yellow}%B%n@%F{
 RPROMPT=""
 
 # Cascading preferences of editors
-EDITOR='/home/adam/usr/bin/emacs'
-[ -x "$EDITOR" ] || EDITOR='/home/adam/scripts/emacs'
+EDITOR="$HOME/usr/bin/emacs"
+[ -x "$EDITOR" ] || EDITOR="$HOME/scripts/emacs"
 [ -x "$EDITOR" ] || EDITOR='/usr/bin/emacs'
 [ -x "$EDITOR" ] || EDITOR='/usr/bin/vim'
 [ -x "$EDITOR" ] || EDITOR='/usr/bin/vi'
 
-
 # source ~/.zsh/zsh-syntax-highlighting.zsh
 export PATH=$HOME/usr/bin:$HOME/scripts:$HOME/go/bin:$PATH
 
-# For job
-export GOROOT=/home/adam/usr/local/go
-export GOPATH=/home/adam/go
+export GOPATH=$HOME/go
 export CC=/usr/bin/clang
-
 
 [ -f ~/.localrc ] && source ~/.localrc
 [ -f ~/.bash_aliases ] && source ~/.bash_aliases
 
-WINEPREFIX='/home/adam/usr/wine'
+export WINEPREFIX="$HOME/usr/wine"
+export PREFIX="$HOME/usr"

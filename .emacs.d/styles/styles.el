@@ -36,4 +36,4 @@
  '(mode-line-inactive ((t (:overline "#0074FF"))))
  '(fringe ((t (:background "#000000" :foreground "#0074FF"))))
  '(scroll-bar ((t (:background "#000000" :foreground "#0074FF" :height 1.0 :width condensed))))
- '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "unknown" :family "Ubuntu Mono")))))
+ '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 130 :width normal :foundry "unknown" :family "Roboto Mono")))))

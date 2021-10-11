@@ -87,7 +87,7 @@
 
 (set-face-attribute 'mode-line-position-face nil
     :inherit 'mode-line-face
-    :family "lemon"
+    :family "Roboto mono"
     :foreground "grey70"
     :weight 'bold
     :height 100)

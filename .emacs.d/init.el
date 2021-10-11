@@ -6,8 +6,8 @@
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 (require 'package)
 (package-initialize)
-(push '("marmalade" . "http://marmalade-repo.org/packages/") package-archives )
-(push '("melpa" . "http://melpa.milkbox.net/packages/") package-archives)
+;; (push '("marmalade" . "http://marmalade-repo.org/packages/") package-archives )
+(push '("melpa" . "https://melpa.org/packages/") package-archives)
 
 ;; Automatically install packages if not theer
 (defvar my-packages '(expand-region popup auto-complete
@@ -41,6 +41,7 @@
 (load "~/.emacs.d/styles/styles.el")
 (load "~/.emacs.d/bindings.el")
 (load "~/.emacs.d/modes/mode-hooks.el")
+
 
 ; Change settings for backup files.
 ; Set the directory to store them in to ~/.emacs.d/autosaves.
@@ -87,6 +88,7 @@
 
 (add-hook 'c++-mode-hook 'my:ac-c-headers-init)
 (add-hook 'c-mode-hook 'my:ac-c-headers-init)
+;(add-hook 'org-mode (lambda () (load "~/.emacs.d/org-mode.el") t)
 
 ;; Indentation settings
 (setq indent-tabs-mode nil)

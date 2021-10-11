@@ -147,7 +147,6 @@ alias back='popd'
 alias flip='pushd_builtin'
 alias f='flip'
 alias ls='ls --color=auto'
-alias se='sudo emacs -nw'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'x
 alias egrep='egrep --color=auto'

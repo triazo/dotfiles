@@ -1069,11 +1069,20 @@ getstate(Window w) {
 	return result;
 }
 
+void sub_non_ascii_chars(char *txt, unsigned int size) {
+    int i;
+    for (i=0; i<size; i++) {
+        if (txt[i] > 127 || txt[i] < 0)
+            txt[i] = '?';
+    }
+}
+
 Bool
 gettextprop(Window w, Atom atom, char *text, unsigned int size) {
 	char **list = NULL;
 	int n;
 	XTextProperty name;
+    char buf[size-1];
 
 	if(!text || size == 0)
 		return False;
@@ -1081,11 +1090,17 @@ gettextprop(Window w, Atom atom, char *text, unsigned int size) {
 	XGetTextProperty(dpy, w, &name, atom);
 	if(!name.nitems)
 		return False;
-	if(name.encoding == XA_STRING)
-		strncpy(text, (char *)name.value, size - 1);
-	else {
+	/* if(name.encoding == XA_STRING) */
+	/* 	strncpy(text, (char *)name.value, size - 1); */
+    if (name.encoding == XA_STRING) {
+        strncpy(text, (char *)name.value, size - 1);
+        sub_non_ascii_chars(buf, size-1);
+        strncpy(text, buf, size - 1);
+    } else {
 		if(XmbTextPropertyToTextList(dpy, &name, &list, &n) >= Success && n > 0 && *list) {
-			strncpy(text, *list, size - 1);
+			strncpy(buf, *list, size - 1);
+            sub_non_ascii_chars(buf, size-1);
+            strncpy(text, buf, size - 1);
 			XFreeStringList(list);
 		}
 	}

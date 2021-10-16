@@ -6,7 +6,7 @@
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 (require 'package)
 (package-initialize)
-(push '("marmalade" . "http://marmalade-repo.org/packages/") package-archives )
+;; (push '("marmalade" . "http://marmalade-repo.org/packages/") package-archives )
 (push '("melpa" . "http://melpa.milkbox.net/packages/") package-archives)
 
 ;; Automatically install packages if not theer

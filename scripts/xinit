@@ -9,21 +9,28 @@ export PATH=$PATH:/opt/android-sdk/tools:/opt/android-sdk/platform-tools
 
 if [[ "$XDG_SESSION_TYPE" = "wayland" ]]; then
     # Only works in gnome, so basically useless in xinit.
+    echo "Setting gnome keymap mod"
     gsettings set org.gnome.desktop.input-sources xkb-options "['caps:ctrl_modifier']"
 else
+    echo "Setting xmodmap"
     xmodmap ~/.xmodmap
 fi
 
 TPAD=$(xinput list | grep Touch | cut -d '=' -f 2 | awk '{print $1}')
-xinput -disable $TPAD
-xinput set-prop $TPAD "Synaptics Tap Time" "0"
-TPNT=$(xinput list | grep TrackPoint | cut -d '=' -f 2 | awk '{print $1}')
-xinput set-prop $TPNT "Evdev Wheel Emulation" 1
-xinput set-prop $TPNT "Evdev Wheel Emulation Button" 2
-xinput set-prop $TPNT "Evdev Wheel Emulation Timeout" 200
-xinput set-prop $TPNT "Evdev Wheel Emulation Axes" 6 7 4 5
-#synclient HorizTwoFingerScroll=1
-#synclient VertEdgeScroll=0
+if [[ "$TPAD"=="" ]]
+then
+    echo "No touchpad"
+else
+    xinput -disable $TPAD
+    xinput set-prop $TPAD "Synaptics Tap Time" "0"
+    TPNT=$(xinput list | grep TrackPoint | cut -d '=' -f 2 | awk '{print $1}')
+    xinput set-prop $TPNT "Evdev Wheel Emulation" 1
+    xinput set-prop $TPNT "Evdev Wheel Emulation Button" 2
+    xinput set-prop $TPNT "Evdev Wheel Emulation Timeout" 200
+    xinput set-prop $TPNT "Evdev Wheel Emulation Axes" 6 7 4 5
+    #synclient HorizTwoFingerScroll=1
+    #synclient VertEdgeScroll=0
+fi
 
 echo 'true' > /tmp/lid_sleep
 xbacklight -set 50

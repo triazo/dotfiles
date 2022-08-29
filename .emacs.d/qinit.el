@@ -10,8 +10,7 @@
 (push '("melpa" . "http://melpa.milkbox.net/packages/") package-archives)
 
 ;; Automatically install packages if not theer
-(defvar my-packages '(expand-region popup auto-complete
-				    auto-highlight-symbol pushbullet php-mode))
+(defvar my-packages '(expand-region))
 
 (setq my-install-packages nil)
 (dolist (p my-packages)
@@ -31,9 +30,9 @@
 (require 'expand-region)
 (require 'ido)
 (require 'go-mode-load)
-(require 'popup)
+;;(require 'popup)
 ;;(require 'auto-complete)
-(require 'auto-highlight-symbol)
+;;(require 'auto-highlight-symbol)
 
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
@@ -95,8 +94,8 @@
 (put 'set-goal-column 'disabled nil)
 
 ;; Auto-hilight symbol mode
-(global-auto-highlight-symbol-mode t)
-(put 'downcase-region 'disabled nil)
+;; (global-auto-highlight-symbol-mode t)
+;; (put 'downcase-region 'disabled nil)
 
 ;; For js-beutify.el
 (eval-after-load 'js2-mode

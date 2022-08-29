@@ -6,8 +6,8 @@ compinit
 # End of lines added by compinstall
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
-HISTSIZE=1000000
-SAVEHIST=1000000
+HISTSIZE=10000000
+SAVEHIST=10000000
 bindkey -e
 # End of lines configured by zsh-newuser-install
 
@@ -19,7 +19,7 @@ setopt globdots
 local start="%(?,%F{red}☺,%F{red}☹)"
 
 # Decode color based on hostname.
-HOSTNAME=$(hostname)
+HOSTNAME=$(cat /etc/hostname)
 COLOR=yellow
 if [[ "$HOSTNAME" == *"tin"* ]]
 then
@@ -27,6 +27,9 @@ then
 elif [[ "$HOSTNAME" == *"zinc"* ]]
 then
     COLOR=blue
+elif [[ "$HOSTNAME" == *"nicrosil"* ]]
+then
+    COLOR=cyan
 elif [[ "$HOSTNAME" == *"iron"* ]]
 then
     COLOR=black
@@ -53,3 +56,11 @@ export CC=/usr/bin/clang
 
 export WINEPREFIX="$HOME/usr/wine"
 export PREFIX="$HOME/usr"
+
+# SSH-agent starting
+if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+    ssh-agent > "$XDG_RUNTIME_DIR/ssh-agent.env"
+fi
+if [[ ! "$SSH_AUTH_SOCK" ]]; then
+    source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
+fi

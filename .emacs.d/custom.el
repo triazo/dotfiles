@@ -3,12 +3,14 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   '("70936e3b54ca6d668354fdc87eea5f0a5129380c0c459598be943efba6ae1563" default))
  '(emdroid-activity-creator "ActivityCreator.py")
  '(emdroid-tools-dir "/opt/android-sdk")
  '(inhibit-startup-screen t)
  '(mpc-host "pi.triazo.net")
  '(package-selected-packages
-   '(sclang-extensions ag elixir-mode yaml-mode emacs-xkcd terraform-mode magit pushbullet php-mode expand-region auto-highlight-symbol auto-complete))
+   '(markdown-mode rust-mode lavender-theme dart-mode shader-mode csharp-mode glsl-mode sclang-extensions ag elixir-mode yaml-mode emacs-xkcd terraform-mode magit pushbullet php-mode expand-region auto-highlight-symbol auto-complete))
  '(send-mail-function 'smtpmail-send-it)
  '(smtpmail-smtp-server "mail.triazo.net")
  '(smtpmail-smtp-service 587)

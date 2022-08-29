@@ -133,3 +133,7 @@
 (setq truncate-partial-width-windows nil)
 (set-default 'truncate-lines t)
 (put 'narrow-to-region 'disabled nil)
+
+;; Create a buffer-local hook to run elixir-format on save, only when we enable elixir-mode.
+(add-hook 'elixir-mode-hook
+          (lambda () (add-hook 'before-save-hook 'elixir-format nil t)))

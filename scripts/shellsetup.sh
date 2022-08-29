@@ -139,7 +139,7 @@ then
 	cd binutils-gdb
     fi
 
-    configargs="--prefix=$HOME/usr/ --with-python=python2"
+    configargs="--prefix=$HOME/usr/ --with-python=python3"
     /bin/bash ./configure $configargs
     /usr/bin/make
     /usr/bin/make install

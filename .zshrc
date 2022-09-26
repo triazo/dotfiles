@@ -18,12 +18,12 @@ setopt globdots
 
 local start="%(?,%F{red}☺,%F{red}☹)"
 
-# Decode color based on hostname.
+# Decode hostname color based on hostname.
 HOSTNAME=$(cat /etc/hostname)
 COLOR=yellow
 if [[ "$HOSTNAME" == *"tin"* ]]
 then
-    COLOR=magenta
+    COLOR=129
 elif [[ "$HOSTNAME" == *"zinc"* ]]
 then
     COLOR=blue
@@ -35,7 +35,14 @@ then
     COLOR=black
 fi
 
-PROMPT="%K{green}%(?,%B%F{green}▒░,%F{red}█▒)%K{green}%F{yellow}%B%n@%F{$COLOR}%m%b%F{green}%K{black}▓▒░%F{blue}%K{black}%B%~/%b%k%f%F{black}%K{default}▓▒░%B%F{blue}%#%b%F{default} "
+# Other prompt colors
+SYSTEM_COLOR=69
+BGCOLOR=183
+ERRORCOLOR=196
+PATHBGCOLOR=53
+PATHCOLOR=69
+
+PROMPT="%K{$BGCOLOR}%(?,%B%F{$BGCOLOR}▒░,%F{$ERRORCOLOR}█▒)%K{$BGCOLOR}%F{$SYSTEM_COLOR}%B%n@%F{$COLOR}%m%b%F{$BGCOLOR}%K{$PATHBGCOLOR}▓▒░%F{$PATHCOLOR}%K{$PATHBGCOLOR}%B%~/%b%k%f%F{$PATHBGCOLOR}%K{default}▓▒░%B%F{$PATHCOLOR}%#%b%F{default} "
 RPROMPT=""
 
 # Cascading preferences of editors

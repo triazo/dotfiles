@@ -32,7 +32,11 @@ def listen(address):
             else:
                 time = sub.check_output(['date', '+%A %B %d %H:%M:%S']).split('\n')[0]
                 battery_info = sub.check_output('acpi').split()
-                battery_percent = int(battery_info[3].split('%')[0])
+                battery_percent = -69
+                if 'charging' in battery_info[3]:
+                    battery_percent = int(battery_info[4].split('%')[0])
+                else:
+                    battery_percent = int(battery_info[3].split('%')[0])
                 if battery_info[2].split(',')[0] == "Discharging":
                     battery_time = battery_info[4]
                     display_string = "%s -- %d%% -- %s Remaining" % (time, battery_percent, battery_time)

@@ -10,7 +10,7 @@
  * whenever a new event has been fetched. This allows event dispatching
  * in O(1) time.
  *
-n * Each child of the root window is called a client, except windows which have
+ * Each child of the root window is called a client, except windows which have
  * set the override_redirect flag.  Clients are organized in a linked client
  * list on each monitor, the focus history is remembered through a stack list
  * on each monitor. Each client contains a bit array to indicate the tags of a
@@ -1093,7 +1093,7 @@ gettextprop(Window w, Atom atom, char *text, unsigned int size) {
 	/* if(name.encoding == XA_STRING) */
 	/* 	strncpy(text, (char *)name.value, size - 1); */
     if (name.encoding == XA_STRING) {
-        strncpy(text, (char *)name.value, size - 1);
+        strncpy(buf, (char *)name.value, size - 1);
         sub_non_ascii_chars(buf, size-1);
         strncpy(text, buf, size - 1);
     } else {

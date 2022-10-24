@@ -15,6 +15,7 @@ autoload -U compinit promptinit
 promptinit
 
 setopt globdots
+set bell-style none
 
 local start="%(?,%F{red}☺,%F{red}☹)"
 

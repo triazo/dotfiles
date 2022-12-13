@@ -60,3 +60,12 @@
 			    '(lambda () (interactive) (scroll-down 3)))))
 
 (global-set-key (kbd "C-c e") 'eval-and-replace)
+
+;; projectile mode stuff
+
+(add-hook 'projectile-mode-hook
+	  '(lambda ()
+	     (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+	     (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)))
+
+(global-set-key [f8] 'neotree-project-dir)

@@ -170,5 +170,10 @@ alias cdsia="cd $HOME/go/src/gitlab.com/NebulousLabs/Sia"
 alias cdsiabe="cd $HOME/go/src/gitlab.com/NebulousLabs/Sia-Block-Explorer"
 alias idn='sudo ifdown --force wlan0'
 alias iup='sudo ifup wlan0'
+function vrctest
+{
+    vrcdir="/home/triazo/.var/app/com.valvesoftware.Steam/data/Steam/steamapps/compatdata/438100/pfx/drive_c/users/steamuser/AppData/LocalLow/VRChat/VRChat/Avatars/"
+    cp "$1" ${vrcdir}
+}
 cdf () { cd "$(ls | grep $1)"; }
 text() { ssh triazo "echo $@ | mail 8455490721@vtext.com"; }

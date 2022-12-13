@@ -10,7 +10,7 @@
  '(inhibit-startup-screen t)
  '(mpc-host "pi.triazo.net")
  '(package-selected-packages
-   '(magit-gh-pulls tree-sitter-langs tree-sitter lavender-theme csharp-mode markdown-mode sclang-extensions ag elixir-mode yaml-mode emacs-xkcd terraform-mode magit pushbullet php-mode expand-region auto-highlight-symbol auto-complete dart-mode shader-mode glsl-mode rust-mode elixir-mode))
+   '(magit-gh-pulls lsp-mode tree-sitter-langs tree-sitter neotree projectile-ripgrep discover markdown-mode rust-mode lavender-theme dart-mode shader-mode csharp-mode glsl-mode sclang-extensions ag elixir-mode yaml-mode emacs-xkcd terraform-mode magit pushbullet php-mode expand-region auto-highlight-symbol auto-complete dart-mode shader-mode glsl-mode rust-mode elixir-mode))
  '(send-mail-function 'smtpmail-send-it)
  '(smtpmail-smtp-server "mail.triazo.net")
  '(smtpmail-smtp-service 587)

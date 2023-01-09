@@ -139,6 +139,9 @@ function update_terraform {
     popd
 }
 
+function vrcencode {
+    ffmpeg -i "$1" -c:v h264 -b:v 5M -maxrate 9M -bufsize 1M -vf "subtitles=${1}:stream_index=0" -movflags +faststart -pix_fmt yuv420p -c:a aac -ab 1536k -strict 2 -threads 8 "$2"
+}
 
 alias la='ls -a'
 alias ll='ls -al'

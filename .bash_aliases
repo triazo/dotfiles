@@ -126,6 +126,24 @@ newres() {
     xrandr --output HDMI-1 --mode "$ml"
 }
 
+filebottvtest () {
+    filebot -rename -r "${1}" -non-strict --output /media/tv --format "{n}/Season {s}/{n} - {S00E00} - {t} {vs}-{vf}" --action test
+}
+
+filebottv () {
+    filebot -rename -r "${1}" -non-strict --output /media/tv --format "{n}/Season {s}/{n} - {S00E00} - {t} {vs}-{vf}" --action hardlink
+}
+
+filebotmovietest () {
+    filebot -rename -r "${1}" -non-strict --output /media/movies --format "{n} - ({y})/{n} - {vs}-{vf}" --action test
+}
+
+filebotmovie () {
+    filebot -rename -r "${1}" -non-strict --output /media/movies --format "{n} - ({y})/{n} - {vs}-{vf}" --action hardlink
+}
+
+
+
 function update_terraform {
     pushd /tmp
     dl_url="https://www.terraform.io/downloads.html"
@@ -180,3 +198,9 @@ function vrctest
 }
 cdf () { cd "$(ls | grep $1)"; }
 text() { ssh triazo "echo $@ | mail 8455490721@vtext.com"; }
+filebottest () {
+    filebot -rename -r "${1}" -non-strict --output /media/tv --format "{n}/Season {s}/{n} - {S00E00} - {t} {vs}-{vf}" --action hardlink
+    }
+filebotlink () {
+    filebot -rename -r "${1}" -non-strict --output /media/tv --format "{n}/Season {s}/{n} - {S00E00} - {t} {vs}-{vf}" --action hardlink
+    }

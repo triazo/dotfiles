@@ -115,7 +115,7 @@ ctxchg()
     pushd $@
 }
 
-newres() {       
+newres() {
     ml="$1x$2_$3"
     echo $ml
     modeline="$(cvt -i $1 $2 $3 | tail -n 1 | sed -e 's/Modeline//g' | sed -e 's/^\ //g')"
@@ -172,7 +172,7 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'x
 alias egrep='egrep --color=auto'
 # alias sl="sl -e"
-alias e="emacs -q -nw -l $HOME/.emacs.d/qinit.el"
+alias e="emacs -nw"
 alias se="sudo emacs -q -nw"
 alias mpc='mpc -h $(cat /tmp/mpd_host)'
 alias conky='conky -c ~/.conky.d/default'

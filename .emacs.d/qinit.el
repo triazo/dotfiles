@@ -9,27 +9,14 @@
 ;; (push '("marmalade" . "http://marmalade-repo.org/packages/") package-archives )
 (push '("melpa" . "http://melpa.milkbox.net/packages/") package-archives)
 
-;; Automatically install packages if not theer
-(defvar my-packages '(expand-region))
-
-(setq my-install-packages nil)
-(dolist (p my-packages)
-  (when (not (package-installed-p p))
-    (setq my-install-packages "true")))
-
-(if my-install-packages
-    (progn
-      (package-refresh-contents)
-      (dolist (p my-packages)
-	(when (not (package-installed-p p))
-	  (package-install p)))))
+;; Package management disabled in qinit.el
 
 ;; Requires and imports
 (add-to-list 'load-path "~/.emacs.d/modes")
 (load "~/.emacs.d/lisp/functions.el")
-(require 'expand-region)
-(require 'ido)
-(require 'go-mode-load)
+;; (require 'expand-region)
+;; (require 'ido)
+;; (require 'go-mode-load)
 ;;(require 'popup)
 ;;(require 'auto-complete)
 ;;(require 'auto-highlight-symbol)
@@ -98,11 +85,11 @@
 ;; (put 'downcase-region 'disabled nil)
 
 ;; For js-beutify.el
-(eval-after-load 'js2-mode
-  '(define-key js2-mode-map (kbd "C-c b") 'web-beautify-js))
-(eval-after-load 'json-mode
-  '(define-key json-mode-map (kbd "C-c b") 'web-beautify-js))
-(eval-after-load 'sgml-mode
-  '(define-key html-mode-map (kbd "C-c b") 'web-beautify-html))
-(eval-after-load 'css-mode
-  '(define-key css-mode-map (kbd "C-c b") 'web-beautify-css))
+;; (eval-after-load 'js2-mode
+;;   '(define-key js2-mode-map (kbd "C-c b") 'web-beautify-js))
+;; (eval-after-load 'json-mode
+;;   '(define-key json-mode-map (kbd "C-c b") 'web-beautify-js))
+;; (eval-after-load 'sgml-mode
+;;   '(define-key html-mode-map (kbd "C-c b") 'web-beautify-html))
+;; (eval-after-load 'css-mode
+;;   '(define-key css-mode-map (kbd "C-c b") 'web-beautify-css))

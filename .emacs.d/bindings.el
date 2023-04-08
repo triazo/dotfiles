@@ -69,3 +69,8 @@
 	     (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)))
 
 (global-set-key [f8] 'neotree-project-dir)
+
+
+(add-hook 'lsp-mode-hook
+	  '(lambda ()
+	     (define-key lsp-mode-map (kbd "C-c C-l") 'lsp-command-map)))

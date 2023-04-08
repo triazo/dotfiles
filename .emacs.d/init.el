@@ -1,36 +1,14 @@
-                                        ; Triazo Emacs config.  This statement last updated Oct 19, 2014;
+;; pager emacs config, currently updated April 4, 2023
 
-                                        ; Note that 'C-h v' will bring the help for a variable
+;; Packages now handled in `.emacs.d/packages.el`
+(setq package-enable-at-startup nil)
+(load "~/.emacs.d/packages.el")
 
-;; A better package management system.  Don't do everything manually
+;; Misc Requires and imports
 (add-to-list 'load-path "~/.emacs.d/lisp/")
-(require 'package)
-(package-initialize)
-;; (push '("marmalade" . "http://marmalade-repo.org/packages/") package-archives )
-(push '("melpa" . "https://melpa.org/packages/") package-archives)
-
-;; Automatically install packages if not theer
-(defvar my-packages '(expand-region popup auto-complete
-                                    auto-highlight-symbol
-                                    pushbullet php-mode magit
-                                    tree-sitter tree-sitter-langs
-                                    lsp-mode))
-
-(setq my-install-packages nil)
-(dolist (p my-packages)
-  (when (not (package-installed-p p))
-    (setq my-install-packages "true")))
-
-(if my-install-packages
-    (progn
-      (package-refresh-contents)
-      (dolist (p my-packages)
-        (when (not (package-installed-p p))
-          (package-install p)))))
-
-;; Requires and imports
-(add-to-list 'load-path "~/.emacs.d/modes")
 (load "~/.emacs.d/lisp/functions.el")
+(add-to-list 'load-path "~/.emacs.d/modes")
+
 (require 'expand-region)
 (require 'ido)
 (require 'go-mode-load)
@@ -38,30 +16,31 @@
 (require 'auto-complete)
 (require 'auto-highlight-symbol)
 
+
+;; Custom styles and general bindings
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
 (load "~/.emacs.d/styles/styles.el")
 (load "~/.emacs.d/bindings.el")
 (load "~/.emacs.d/modes/mode-hooks.el")
 
-
-                                        ; Change settings for backup files.
-                                        ; Set the directory to store them in to ~/.emacs.d/autosaves.
+;; Change settings for backup files.
+;; Set the directory to store them in to ~/.emacs.d/autosaves.
 (if (eq (user-uid) 0)
-                                        ; Root Backups do not go in the shared emacs config file.
+    ;; Root Backups do not go in the shared emacs config file.
     (setq backup-directory-alist `(("." . "~/.emacs-autosaves")))
-                                        ; Else
+  ;; Else
   (setq backup-directory-alist `(("." . "~/.emacs.d/autosaves"))))
 
-                                        ; Backup things by copying them.
+;; Backup things by copying them.
 (setq backup-by-copying t)
-                                        ; Set some other backup related options.
+;; Set some other backup related options.
 (setq delete-old-versions t
       kept-new-versions 6
       kept-old-versions 2
       version-control t)
 
-                                        ; Set syntax hilighting to maximum. Does this do anything?
+;; Set syntax hilighting to maximum. Does this do anything?
 (setq font-lock-maximum-decoration t)
 
 ;; Start ido mode
@@ -90,7 +69,7 @@
 
 (add-hook 'c++-mode-hook 'my:ac-c-headers-init)
 (add-hook 'c-mode-hook 'my:ac-c-headers-init)
-                                        ;(add-hook 'org-mode (lambda () (load "~/.emacs.d/org-mode.el") t)
+;;(add-hook 'org-mode (lambda () (load "~/.emacs.d/org-mode.el") t)
 
 ;; Indentation settings
 (setq indent-tabs-mode nil)
@@ -104,15 +83,29 @@
                              (local-set-key (kbd "C-o C-e") 'slime-eval-last-expression)))
 
 ;; basic programming settings
-(add-hook 'prog-mode-hook (lambda()
-                            (linum-mode)
-                            (hs-minor-mode)
-                            (local-set-key (kbd "C-c SPC") 'hs-toggle-hiding)))
+(add-hook 'prog-mode-hook
+	  (lambda()
+            (global-display-line-numbers-mode)
+	    (copilot-mode)
+            (hs-minor-mode)))
+
+(add-hook 'hs-minor-mode-hook
+	  (lambda()
+	    (local-set-key (kbd "C-c SPC") 'hs-toggle-hiding)))
+
+;; copilot mode bindings
+(define-key copilot-mode-map (kbd "C-<tab>") 'copilot-accept-completion)
+(define-key copilot-mode-map (kbd "M-<right>") 'copilot-next-completion)
+(define-key copilot-mode-map (kbd "M-<left>") 'copilot-previous-completion)
+(define-key copilot-mode-map (kbd "M-<down>") 'copilot-accept-completion-by-line)
 
 (put 'set-goal-column 'disabled nil)
 
 ;; Auto-hilight symbol mode
 (global-auto-highlight-symbol-mode t)
+;; Default autohilight bindings interfere with copilot bindings
+(define-key auto-highlight-symbol-mode-map (kbd "M-<right>") nil)
+(define-key auto-highlight-symbol-mode-map (kbd "M-<left>") nil)
 (put 'downcase-region 'disabled nil)
 
 ;; For js-beutify.el
@@ -138,10 +131,9 @@
 
 ;; Create a buffer-local hook to run elixir-format on save, only when we enable elixir-mode.
 (add-hook 'elixir-mode-hook
-          (lambda () (add-hook 'before-save-hook 'elixir-format nil t)))
-
-;; Projectile mode for bigger projects
-;; TODO: gate behind just particular types of projects, probably not
-;; needed for every git repo
-(projectile-mode +1)
-(setq projectile-switch-project-action 'neotree-projectile-action)
+          (lambda ()
+	    (add-hook 'before-save-hook 'elixir-format nil t)
+	    ;; projectile mode for elixir. Could use for other things
+	    ;; but atm I don't use it for other types of projecs
+	    (projectile-mode +1)
+	    (setq projectile-switch-project-action 'neotree-projectile-action)))

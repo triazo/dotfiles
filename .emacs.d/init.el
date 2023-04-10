@@ -94,10 +94,13 @@
 	    (local-set-key (kbd "C-c SPC") 'hs-toggle-hiding)))
 
 ;; copilot mode bindings
-(define-key copilot-mode-map (kbd "C-<tab>") 'copilot-accept-completion)
-(define-key copilot-mode-map (kbd "M-<right>") 'copilot-next-completion)
-(define-key copilot-mode-map (kbd "M-<left>") 'copilot-previous-completion)
-(define-key copilot-mode-map (kbd "M-<down>") 'copilot-accept-completion-by-line)
+(add-hook 'copilot-mode-hook
+	  (lambda()
+	    
+	    (define-key copilot-mode-map (kbd "C-<tab>") 'copilot-accept-completion)
+	    (define-key copilot-mode-map (kbd "M-<right>") 'copilot-next-completion)
+	    (define-key copilot-mode-map (kbd "M-<left>") 'copilot-previous-completion)
+	    (define-key copilot-mode-map (kbd "M-<down>") 'copilot-accept-completion-by-line)))
 
 (put 'set-goal-column 'disabled nil)
 

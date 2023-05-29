@@ -1,0 +1,28 @@
+# Main config for fvwm buttons; named RightButton
+
+# First Define Styles
+Style "RightButton" !Title, !Borders, WindowListSkip, Sticky, StaysOnBottom, NeverFocus, FixedPosition, !Iconifiable, !Maximizeable, !Closable
+Style "RightButton" Colorset 5
+
+DestroyModuleConfig RightButton
+*RightButton: Back #333333
+*RightButton: Fore #999999
+*RightButton: Font "xft:starduster:size=20"
+*RightButton: Frame 0
+*RightButton: Columns 4
+# Originally 20 rows of 45 pixels filling 900 px
+*RightButton: Rows 20
+*RightButton: (4x2, Title "Enterprise", Action(Mouse 1) `Menu MainMenu Mouse o100 0  `, Action (Mouse 3) `Function RightClickMenu Mouse o100 0`)
+*RightButton: (1x2, Icon "$[SVGDIR]/firefox.svg:48x0", Action (Mouse 1) `Exec exec firefox`)
+#*RightButton: (1x1, Icon "$[SVGDIR]/thunderbird.svg:48x0", Action (Mouse 1) `Exec exec thunderbird`)
+*RightButton: (1x2, Icon "$[SVGDIR]/synfig.svg:0x48", Action (Mouse 1) `Exec exec $[BINDIR]/synfig`)
+*RightButton: (1x2, Icon "$[SVGDIR]/inkscape.svg:48x0", Action (Mouse 1) `Exec exec inkscape`)
+*RightButton: (1x2, Icon "$[SVGDIR]/minecraft.svg:0x48", Action (Mouse 1) `Exec exec minecraft`)
+#*RightButton: (4x5, Swallow (Respawn) "nofap" `Exec exec conky -c /home/adam/.conky/nofap` )
+# *RightButton: (4x8, Swallow (NoClose, UseOld) "xterm" `Exec exec xxterm -bg '#333333' -e cmatrix -g 1x1+0+999999`)
+*RightButton: (4x13, Swallow (NoClose, UseOld) "xterm" `Exec exec xterm -bg '#333333' -e cmatrix `)
+*RightButton: (4x2, Swallow "FvwmPager" `Module FvwmPager`)
+*RightButton: (4x1, Swallow "xclock" `Exec exec xclock -bg '#333333' -fg '#999999' -digital -face 'unispace:size=10' -strftime '%a, %d %b %Y %_I:%M' -g +00+999999`)
+#*RightButton: (4x1)
+#*RightButton: (4x6, Swallow (Respawn, UseOld) "Conky (Enterprise)" `Exec exec conky` )
+#*RightButton: (4x6)

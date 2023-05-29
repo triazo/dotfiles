@@ -1,0 +1,30 @@
+# Fvwm Styles
+
+# Set Focus Policy
+Style * SloppyFocus
+Style * FPClickRaisesFocused
+
+# Title Style
+Style * TitleAtLeft
+Style * Colorset 1 
+Style * HilightColorset 2
+Style * BorderColorset 1
+Style * HilightBorderColorset 1
+Style * HandleWidth 2, BorderWidth 2
+Style * Font "xft:Ubuntu:size=10"
+
+# Other misc
+Style * ResizeOpaque, DecorateTransient, SnapAttraction 2 all
+OpaqueMoveSize unlimited
+
+# Style for terminal in back.  launched with " -name 'RightBackThingy'" option
+Style 'RightBackThingy' HandleWidth 0
+Style 'RightBackThingy' StaysOnBottom, WindowListSkip, Sticky, FixedPosition, !Maximizable, !Iconifiable
+
+# Program Styles
+Style "Conky*" Sticky, Borders, Title
+# Style "Vapor" Color #262627 #262627
+# Style "aterm" Sticky
+
+# Gets rid of title bar
+# Style * !Title

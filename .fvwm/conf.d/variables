@@ -1,0 +1,6 @@
+# Global Variables
+
+# Background
+SetEnv ROOT_IMAGE ~/images/Wallpapers/dual\ dark\ red\ and\ blue\ particles.jpg
+SetEnv SVGDIR $[FVWM_USERDIR]/images/icons/svg
+SetEnv BINDIR /home/adam/bin

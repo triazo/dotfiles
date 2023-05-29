@@ -1,0 +1,5 @@
+# FVWM Backer Config
+
+DestroyModuleConfig FvwmBacker*
+*FvwmBacker: Command (Desk 0) Exec exec fvwm-root -r $[ROOT_IMAGE]
+# Question: is this whole module really necessary???  

@@ -1,0 +1,10 @@
+# Fvwm Colorsets
+
+# Colorset 6: Modules
+Colorset 5 fg #999999 bg #333333 hi #1793d1
+
+#Window colorsets
+# Active Window
+Colorset 1 fg #999999, bg #1793D1, sh #1793d3, hi #1793d3
+# Inactive Window
+Colorset 2 fg #333333, bg #09384F, sh #09384F, hi #09384F

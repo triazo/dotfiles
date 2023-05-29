@@ -1,0 +1,28 @@
+# Basic Functions
+
+# Function for slightly redifining the WindowMenu menu
+DestroyFunc WindowMenu
+AddToFunc WindowMenu
++ I AddToMenu WindowMenu $[w.name] Title Top
++ I Menu WindowMenu
+
+# Function for swallowing a window into rightbutton (WIP)
+DestroyFunc ButtonSwallow
+AddToFunc ButtonSwallow
++ I DestroyModuleConfig RightButton
++ I *RightButton: Back #333333
++ I *RightButton: Fore #999999
++ I *RightButton: Font "xft:starduster:size=20"
++ I *RightButton: Frame 0
++ I *RightButton: Columns 4
++ I *RightButton: Rows 18
++ I *RightButton: (4x1, Title "Enterprise", Action(Mouse 1) `Menu MainMenu Mouse o100 0  `, Action (Mouse 3) `Menu WindowMenu Mouse o100 0`)
++ I *RightButton: (1x1, Icon "$[SVGDIR]/firefox.svg:48x0", Action (Mouse 1) `Exec exec firefox`)
++ I *RightButton: (1x1, Icon "$[SVGDIR]/thunderbird.svg:48x0", Action (Mouse 1) `Exec exec thunderbird`)
++ I *RightButton: (1x1, Icon "$[SVGDIR]/inkscape.svg:48x0", Action (Mouse 1) `Exec exec inkscape`)
++ I *RightButton: (1x1, Icon "$[SVGDIR]/minecraft.svg:48x0", Action (Mouse 1) `Exec exec minecraft`)
++ I *RightButton: (4x5, Swallow "xterm" `Exec exec xterm -bg '#333333' -e cmatrix`)
++ I *RightButton: (4x1, Swallow "FvwmPager" `Module FvwmPager`)
++ I *RightButton: (4x1, Swallow "xclock" `Exec exec xclock -bg '#333333' -fg '#999999' -digital -face 'unispace:size=10' -strftime '%a, %d %b %Y %_I:%M'`)
++ I *RightButton: (4x6, Swallow (Respawn) "Conky (Enterprise)" `Exec exec conky` )
+

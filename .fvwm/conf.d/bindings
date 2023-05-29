@@ -1,0 +1,28 @@
+# Bindings
+# General form:
+#
+# Key/Mouse Button Context Modifier Action
+#
+# Key buttons defined in /usr/include/X11/keysymdef.h
+# The 'xev' program can also be used to find key names.
+# 'xmodmap' may also help with modifiers.
+# Modifiers can be one of C (control), S (shift), M (meta/alt)
+# 	L (caps-lock), or A (any)
+#
+
+# Key Bindings
+Key F2 A M Exec exec gmrun
+Key e A 4 Exec exec dmenu_run
+Key S A 4 Exec exec xscreensaver-command -lock
+Key Return A 4 Function FvwmUrxvtc
+Key Shift_R A C Exec exec ~/scripts/xkbswap
+
+# Mouse Bindings
+Mouse 1 R N Menu MainMenu
+Mouse 3 R N Function RightClickMenu
+Mouse 1 2 N Close
+Mouse 1 W M Move
+Mouse 1 W 4 Function WindowMenu
+Mouse 3 W 4 Menu MainMenu
+Mouse 1 4 N Maximize
+Mouse 1 I N Iconify false

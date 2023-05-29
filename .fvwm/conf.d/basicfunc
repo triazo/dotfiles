@@ -1,0 +1,12 @@
+# Basic Functions
+
+# Function for slightly redifining the WindowMenu menu
+DestroyFunc WindowMenu
+AddToFunc WindowMenu
++ I AddToMenu WindowMenu $[w.name] Title Top
++ I Menu WindowMenu
+
+DestroyFunc RightClickMenu
+AddToFunc RightClickMenu
++ I AddToMenu WindowMenu "Enterprise" Title Top
++ I Menu WindowMenu

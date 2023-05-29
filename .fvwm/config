@@ -1,0 +1,17 @@
+# FVWM main config page
+# All configuration is stored externaly for orginazition... I don't like long text files.
+
+Read conf.d/variables
+Read conf.d/virtual-desktop
+Read conf.d/menus
+Read conf.d/bindings
+Read conf.d/basicfunc
+Read conf.d/programfunc
+Read conf.d/colorsets
+Read conf.d/windecor
+Read conf.d/backer
+Read conf.d/startup
+Read conf.d/styles
+Read conf.d/pager
+Read conf.d/rightbutton
+

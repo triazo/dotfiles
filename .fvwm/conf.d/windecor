@@ -1,0 +1,19 @@
+# Window Decor
+
+BorderStyle \
+	Active (Colorset 1) \
+	Inactive (Colorset 2) \
+	-- HiddenHandles NoInset Flat
+
+# Title Style
+TitleStyle rightjustified height 16
+TitleStyle \
+	Active (Colorset 1) \
+	Inactive (Colorset 2) \
+	-- Flat
+
+# Button Styles
+ButtonStyle 2 Active pixmap $[FVWM_USERDIR]/images/buttons/ActiveClose.svg:0x16 -- Flat
+ButtonStyle 2 Inactive pixmap $[FVWM_USERDIR]/images/buttons/InactiveClose.svg:0x16 -- Flat
+ButtonStyle 4 Active pixmap $[FVWM_USERDIR]/images/buttons/ActiveMaximize.svg:0x16 -- Flat
+ButtonStyle 4 Inactive pixmap $[FVWM_USERDIR]/images/buttons/InactiveMaximize.svg:0x16 -- Flat

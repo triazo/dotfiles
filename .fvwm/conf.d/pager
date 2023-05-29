@@ -1,0 +1,12 @@
+# Fvwm Pager Config
+
+Style "FvwmPager" !Title, !Borders, NeverFocus, WindowListSkip, Sticky, StaysOnBottom
+DestroyModuleConfig FvwmPager*
+*FvwmPager: Geometry 192x120-0+9999990
+*FvwmPager: Fore #999999
+*FvwmPager: Back #333333
+*FvwmPager: Hilight #1793d1
+*FvwmPager: Font none
+*FvwmPager: SolidSeparators
+*FvwmPager: MiniIcons
+*FvwmPager: UseSkipList

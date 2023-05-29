@@ -1,0 +1,14 @@
+# Startup Functions (and such)
+
+DestroyFunc StartFunction
+AddToFunc   StartFunction
++ I Module FvwmBacker
+#+ I Module FvwmPager
++ I Module FvwmButtons -g 200x900-0+0@1 RightButton
+#+ I Test (Init) Exec exec conky
++ I Test (Init) Exec exec aterm +sb -tr -fg green -name 'RightBackThingy' -g 124x30+1440+0
++ I Test (Init) Exec exec urxvtd
+#+ I Style 'RightBackThingy' HandleWidth 0 
+#+ I Style 'RightBackThingy' StaysOnBottom WindowListSkip 
+#+ I Style 'RightBackThingy' Sticky 
+#+ I Style 'RightBackThingy' FixedPosition

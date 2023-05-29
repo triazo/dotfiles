@@ -1,0 +1,18 @@
+Xinerama on
+# Virtual Desktop Congfiguration
+
+DesktopSize 3X3
+DesktopName 0 Main
+
+EdgeResistance 0
+EdgeScroll 100 100
+EdgeThickness 1
+
+# Format Left Right Top Bottom
+EwmhBaseStruts 0 200 0 0
+
+
+
+IgnoreModifiers L25
+
+

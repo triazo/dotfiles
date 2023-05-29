@@ -1,0 +1,8 @@
+# Functions for launching programs
+DestroyFunc FvwmAterm
+AddToFunc   FvwmAterm
++ I Exec exec aterm +sb -fg \#00abff -tr -tint green -tinttype and
+
+DestroyFunc FvwmUrxvtc
+AddToFunc   FvwmUrxvtc
++ I Exec exec urxvtc +sb -fg \#00abff -bg \#333333 

@@ -1,0 +1,61 @@
+# FVWM Menus
+
+# Menu Styles
+MenuStyle * Mwm
+MenuStyle * Foreground #999999, Background #333333
+MenuStyle * Hilight3Dthin, BorderWidth 1
+MenuStyle * Font "xft:Ubuntu:size=10"
+
+# Main Menu
+DestroyMenu	MainMenu
+AddToMenu	MainMenu
++ "Programs"	Popup ProgramMenu
++ "Games"	Popup GamesMenu
++ "" Nop
++ "US/Dvorak"	Exec exec ~/scripts/xkbswap
++ "Terminal"	Exec exec urxvtc +sb -fg \#00abff -bg \#333333
++ "Fvwm Console" Module FvwmConsole
+
+# Games Menu
+DestroyMenu	GamesMenu
+AddToMenu	GamesMenu
++ "Minecraft"	Exec exec $[BINDIR]/minecraft
++ "Not Tetris"	Exec exec $[BINDIR]/nottetris
++ "Mari0"	Exec exec $[BINDIR]/mari0
++ "Wesnoth"	Exec exec wesnoth
++ "RCT 2"	Exec exec $[BINDIR]/rct2
+
+# Programs Menu
+DestroyMenu	ProgramMenu
+AddToMenu	ProgramMenu
++ "Firefox"	Exec exec firefox
+#+ "Jumanji"	Exec exec jumanji
++ "Conkeror"	Exec exec conkeror
++ "Thunderbird" Exec exec thunderbird
+#+ "Sylpheed"	Exec exec sylpheed
++ "Pidgin"	Exec exec pidgin
++ "Writer"	Exec exec abiword
++ "Inkscape"	Exec exec inkscape
++ "Gimp"	Exec exec gimp
++ "Synfig"	Exec exec $[BINDIR]/synfig
++ "Blender"	Exec exec $[BINDIR]/blender
++ "Openshot"	Exec exec openshot
+#+ "Vapor"	Exec exec $[BINDIR]/vapor
+#+ "Skype"	Exec exec env LD_PRELOAD=/usr/lib/libv4l/v4l2convert.so skype
+#+ "Xterm"	Exec exec xterm
+#+ "Aterm"	Function FvwmAterm
+
+# Window Menu
+DestroyMenu 	WindowMenu
+AddToMenu	WindowMenu
++ "Move"	Move
++ "Maximize"	Maximize
++ "Close"	Close
++ "Iconify"	Iconify
++ "Stick"	Stick
++ "Shade"	WindowShade
++ "Identify"	Module FvwmIdent
++ "Destroy"	Destroy
++ ""		Nop
++ "Restart" 	Restart
++ "Exit" 	Quit

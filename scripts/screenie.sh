@@ -13,7 +13,15 @@ mkdir -p /tmp/screenies
 
 FILE="/tmp/screenies/screenie_$(date +'%Y-%m-%d_%H-%M-%S').png"
 
-import $FILE
+echo $XDG_SESSION_TYPE
+
+if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
+	grim -g "$(slurp)" $FILE
+else
+	import $FILE
+fi
+
+chmod a+r $FILE
 
 SERVER=zinc
 BASEPATH=/var/www/triazo/files/

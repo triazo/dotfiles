@@ -96,7 +96,6 @@
 ;; copilot mode bindings
 (add-hook 'copilot-mode-hook
 	  (lambda()
-	    
 	    (define-key copilot-mode-map (kbd "C-<tab>") 'copilot-accept-completion)
 	    (define-key copilot-mode-map (kbd "M-<right>") 'copilot-next-completion)
 	    (define-key copilot-mode-map (kbd "M-<left>") 'copilot-previous-completion)
@@ -135,8 +134,13 @@
 ;; Create a buffer-local hook to run elixir-format on save, only when we enable elixir-mode.
 (add-hook 'elixir-mode-hook
           (lambda ()
-	    (add-hook 'before-save-hook 'elixir-format nil t)
-	    ;; projectile mode for elixir. Could use for other things
-	    ;; but atm I don't use it for other types of projecs
-	    (projectile-mode +1)
-	    (setq projectile-switch-project-action 'neotree-projectile-action)))
+	    (add-hook 'before-save-hook 'elixir-format nil t)))
+
+;; Finally some python stuff
+(add-hook 'python-mode-hook
+	  (lambda ()
+	    (python-black-on-save-mode)))
+;; (load-theme 'FairyFloss t)
+
+(load "~/.emacs.d/fairyfloss-theme.el")
+(load-theme 'fairyfloss t)

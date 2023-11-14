@@ -14,11 +14,12 @@ link () {
     to="$1"
     ! [ -d "$(dirname "$to")" ] && mkdir -p "$(dirname "$to")"
 
-    if ! [ -h "$to" ]
-    then
-	[ -a "$to" ] && rm -r "$to"
-	ln -s "$HOME/usr/dotfiles/$to" "$to"
-    fi
+    [ -a "$to" ] && rm -r "$to"
+    [ -h "$to" ] && rm -r "$to"
+    todir=$(dirname $to)
+    destpath="$(/usr/bin/realpath -s --relative-to=$todir $HOME/usr/dotfiles/$to)"
+    ln -s "${destpath}" "$to"
+
 }
 
 usage () {

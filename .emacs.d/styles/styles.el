@@ -33,8 +33,8 @@
 
 
 (custom-set-faces
- '(mode-line ((t (:box nil :overline "#FF213B"))))
- '(mode-line-inactive ((t (:overline "#0074FF"))))
- '(fringe ((t (:background "#000000" :foreground "#0074FF"))))
- '(scroll-bar ((t (:background "#000000" :foreground "#0074FF" :height 1.0 :width condensed))))
+ ;'(mode-line ((t (:box nil :overline "#9edea2"))))
+ ;'(mode-line-inactive ((t (:overline "#d5c1de"))))
+ '(fringe ((t (:background "#b091ce" :foreground "#cf87de"))))
+ '(scroll-bar ((t (:background "#4d405b" :foreground "#cf87de" :height 1.0 :width condensed))))
  '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 130 :width normal :foundry "unknown" :family "Roboto Mono")))))

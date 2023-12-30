@@ -10,7 +10,7 @@
  '(inhibit-startup-screen t)
  '(mpc-host "pi.triazo.net")
  '(package-selected-packages
-   '(nginx-mode lsp-treemacs magit-gh-pulls lsp-mode tree-sitter-langs tree-sitter neotree projectile-ripgrep discover markdown-mode rust-mode lavender-theme dart-mode shader-mode csharp-mode glsl-mode sclang-extensions ag elixir-mode yaml-mode emacs-xkcd terraform-mode magit pushbullet php-mode expand-region auto-highlight-symbol auto-complete dart-mode shader-mode glsl-mode rust-mode elixir-mode))
+   '(nginx-mode lsp-treemacs magit-gh-pulls lsp-mode tree-sitter-langs tree-sitter neotree projectile-ripgrep discover markdown-mode rust-mode dart-mode shader-mode csharp-mode glsl-mode sclang-extensions ag elixir-mode yaml-mode emacs-xkcd terraform-mode magit pushbullet php-mode expand-region auto-highlight-symbol auto-complete dart-mode shader-mode glsl-mode rust-mode elixir-mode))
  '(split-height-threshold 160)
  '(tramp-syntax 'default nil (tramp))
  '(vc-follow-symlinks t))

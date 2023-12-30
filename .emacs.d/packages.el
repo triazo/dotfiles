@@ -31,6 +31,7 @@
 (straight-use-package 'markdown-mode)
 (straight-use-package 'shader-mode)
 (straight-use-package 'python-black)
+(straight-use-package 'rust-mode)
 (straight-use-package 'palette)
 (straight-use-package
  '(copilot :type git  :host github :repo "zerolfx/copilot.el" :files ("dist" "*.el") :ensure t))

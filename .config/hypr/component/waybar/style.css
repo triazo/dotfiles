@@ -155,6 +155,7 @@ window#waybar {
 
 #battery.charging, #battery.plugged {
     background-color: #94e2d5 ;
+    color: #000000 ;
 }
 
 #battery {
@@ -181,8 +182,8 @@ window#waybar {
     background-color:  #f38ba8;
     color:#bf5673;
     animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
+    animation-duration: 2.0s;
+    animation-timing-function: steps(2, end);
     animation-iteration-count: infinite;
     animation-direction: alternate;
 }

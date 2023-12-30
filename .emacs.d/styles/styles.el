@@ -10,7 +10,7 @@
 (menu-bar-mode 0)
 (setq linum-format "%3d│")
 (if (display-graphic-p)
-    (progn (load-theme 'lavender)
+    (progn ;; (load-theme 'lavender)
 	   (tool-bar-mode 0)
 	   (setq linum-format "%3d|")
 	   (setq default-frame-alist '((right-fringe . 1)

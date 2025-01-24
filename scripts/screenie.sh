@@ -25,9 +25,12 @@ chmod a+r $FILE
 
 SERVER=zinc
 BASEPATH=/var/www/triazo/files/
+URL=https://triazo.net/files/$(basename $FILE)
 
-echo -n "https://triazo.net/files/$(basename $FILE)" | xclip -r -selection "clip board"
-echo -n "https://triazo.net/files/$(basename $FILE)" | xclip -r
+echo -n "${URL}" | xclip -r -selection "clip board"
+echo -n "${URL}" | xclip -r
+echo -n "${URL}" | /usr/bin/wl-copy
+echo -n "${URL}" | /usr/bin/wl-copy -p
 scp $FILE $SERVER:$BASEPATH$(basename $FILE)
 echo  "https://triazo.net/files/$(basename $FILE)"
 notify-send "uploaded https://triazo.net/files/$(basename $FILE)"

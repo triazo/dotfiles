@@ -20,7 +20,7 @@
 ;; Custom styles and general bindings
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
-(load "~/.emacs.d/styles/styles.el")
+;; (load "~/.emacs.d/styles/styles.el")
 (load "~/.emacs.d/bindings.el")
 (load "~/.emacs.d/modes/mode-hooks.el")
 
@@ -86,7 +86,7 @@
 (add-hook 'prog-mode-hook
 	  (lambda()
             (global-display-line-numbers-mode)
-	    (copilot-mode)
+	    ;; (copilot-mode)
             (hs-minor-mode)))
 
 (add-hook 'hs-minor-mode-hook
@@ -94,21 +94,24 @@
 	    (local-set-key (kbd "C-c SPC") 'hs-toggle-hiding)))
 
 ;; copilot mode bindings
-(add-hook 'copilot-mode-hook
-	  (lambda()
-	    (define-key copilot-mode-map (kbd "C-<tab>") 'copilot-accept-completion)
-	    (define-key copilot-mode-map (kbd "M-<right>") 'copilot-next-completion)
-	    (define-key copilot-mode-map (kbd "M-<left>") 'copilot-previous-completion)
-	    (define-key copilot-mode-map (kbd "M-<down>") 'copilot-accept-completion-by-line)))
+;; (add-hook 'copilot-mode-hook
+;; 	  (lambda()
+;; 	    (define-key copilot-mode-map (kbd "C-<tab>") 'copilot-accept-completion)
+;; 	    (define-key copilot-mode-map (kbd "M-<right>") 'copilot-next-completion)
+;; 	    (define-key copilot-mode-map (kbd "M-<left>") 'copilot-previous-completion)
+;; 	    (define-key copilot-mode-map (kbd "M-<down>") 'copilot-accept-completion-by-line)))
 
 (put 'set-goal-column 'disabled nil)
 
 ;; Auto-hilight symbol mode
 (global-auto-highlight-symbol-mode t)
+
+
 ;; Default autohilight bindings interfere with copilot bindings
-(define-key auto-highlight-symbol-mode-map (kbd "M-<right>") nil)
-(define-key auto-highlight-symbol-mode-map (kbd "M-<left>") nil)
-(put 'downcase-region 'disabled nil)
+;; Disabled because disabling copilot mode
+;; (define-key auto-highlight-symbol-mode-map (kbd "M-<right>") nil)
+;; (define-key auto-highlight-symbol-mode-map (kbd "M-<left>") nil)
+;; (put 'downcase-region 'disabled nil)
 
 ;; For js-beutify.el
 (eval-after-load 'js2-mode
@@ -142,5 +145,24 @@
 	    (python-black-on-save-mode)))
 ;; (load-theme 'FairyFloss t)
 
+
 (load "~/.emacs.d/fairyfloss-theme.el")
-(load-theme 'fairyfloss t)
+
+;; Ported from previous styles.el
+(setq inhibit-startup-screen t)
+(load-file (fullpath-relative-to-current-file "mode-line.el"))
+(menu-bar-mode 0)
+(if (display-graphic-p)
+    (progn
+      (load-theme 'fairyfloss t)
+      (tool-bar-mode 0)
+      (setq default-frame-alist '((right-fringe . 0)
+				  (left-fringe . 0)
+				  ;; scroll-bar-width only applies
+				  ;; when not using toolkit scrollbars
+				  (scroll-bar-width . 10))
+	    )
+      (custom-set-faces
+       '(scroll-bar ((t (:background "#4d405b" :foreground "#cf87de" :height 1.0 :width condensed))))
+       '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 130 :width normal :foundry "unknown" :family "Roboto Mono")))))
+      ))

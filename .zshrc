@@ -1,5 +1,5 @@
-# The following lines were added by compinstall
-zstyle :compinstall filename '/home/triazo/.zshrc'
+
+unsetopt BEEP
 
 autoload -Uz compinit
 compinit

@@ -172,7 +172,7 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'x
 alias egrep='egrep --color=auto'
 # alias sl="sl -e"
-alias e="emacs -nw"
+alias e="emacsclient -c -nw --alternate-editor=''"
 alias se="sudo emacs -q -nw"
 alias mpc='mpc -h $(cat /tmp/mpd_host)'
 alias conky='conky -c ~/.conky.d/default'

@@ -74,7 +74,6 @@
 
 ;; hs- stuff
 (add-hook 'prog-mode-hook (lambda()
-			    (linum-mode)
 			    (hs-minor-mode)
 			    (local-set-key (kbd "C-c SPC") 'hs-toggle-hiding)))
 

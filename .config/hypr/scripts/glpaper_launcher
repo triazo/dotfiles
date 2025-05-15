@@ -1,0 +1,7 @@
+#!/usr/bin/bash
+
+SHADER_FILE="$HOME/.config/hypr/component/sakura_bliss.glsl"
+
+glpaper -F DP-1 $SHADER_FILE
+glpaper -F DP-2 $SHADER_FILE
+glpaper -F HDMI-A-1 $SHADER_FILE

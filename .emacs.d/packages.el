@@ -14,6 +14,10 @@
   (load bootstrap-file nil 'nomessage))
 
 
+;; Attempting to make emacs not take forever to start up
+
+(setq straight-check-for-modifications '(watch-files))
+
 (straight-use-package 'use-package)
 (straight-use-package 'expand-region)
 (straight-use-package 'popup)
@@ -29,9 +33,10 @@
 (straight-use-package 'elixir-mode)
 (straight-use-package 'nginx-mode)
 (straight-use-package 'markdown-mode)
+(straight-use-package 'terraform-mode)
 (straight-use-package 'shader-mode)
 (straight-use-package 'python-black)
 (straight-use-package 'rust-mode)
 (straight-use-package 'palette)
-(straight-use-package
- '(copilot :type git  :host github :repo "zerolfx/copilot.el" :files ("dist" "*.el") :ensure t))
+;; (straight-use-package
+;; '(copilot :type git  :host github :repo "zerolfx/copilot.el" :files ("dist" "*.el") :ensure t))

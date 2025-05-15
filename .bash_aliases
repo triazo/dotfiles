@@ -157,8 +157,29 @@ function update_terraform {
     popd
 }
 
+function update_tofu {
+    pushd /tmp
+    releases_url="https://api.github.com/repos/opentofu/opentofu/releases/latest"
+    version=$(curl "${releases_url}" | grep "tag_name" | sed -e 's/.*tag_name": "v//' -e 's/".*//')
+    zipfile="tofu_${version}_linux_amd64.zip"
+    bin_url="https://github.com/opentofu/opentofu/releases/download/v${version}/${zipfile}"
+    wget "${bin_url}" -O tofu_bin.zip
+    unzip -o tofu_bin.zip
+    chmod +x ./tofu
+    mv tofu $(which tofu)
+    echo $(which tofu)
+    tofu --version
+    popd
+}
+
 function vrcencode {
     ffmpeg -i "$1" -c:v h264 -b:v 5M -maxrate 9M -bufsize 1M -vf "subtitles=${1}:stream_index=0" -movflags +faststart -pix_fmt yuv420p -c:a aac -ab 1536k -strict 2 -threads 8 "$2"
+}
+
+function calibre-convert {
+    azwbook="$(realpath "$1")"
+    epubbook=$(echo "$azwbook" | sed 's/\.azw3/\.epub/')
+    /usr/bin/flatpak run --branch=stable --arch=x86_64 --command=ebook-convert com.calibre_ebook.calibre "$azwbook" "$epubbook"
 }
 
 alias la='ls -a'

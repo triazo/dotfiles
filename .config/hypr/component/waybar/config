@@ -10,7 +10,7 @@
     "margin-bottom":-11,
     //"margin-top":5,
     "modules-left": ["hyprland/workspaces", "hyprland/window"],
-    "modules-right": ["tray", "pulseaudio", "network", "battery", "backlight", "clock"],
+    "modules-right": ["tray", "pulseaudio", "custom/keyboard", "clock"],
     "modules-center": [],
     // Modules configuration
 
@@ -21,6 +21,11 @@
         // "format":"{}",
         "exec": "~/.config/hypr/scripts/tools/start_dyn",
         "escape":true
+    },
+    "custom/keyboard": {
+	"format": "⌨",
+        "return-type": "json",
+        "on-click": "~/.config/hypr/scripts/switch-keyboard-layout.sh"
     },
     "custom/ss":{
         "format":"{}",

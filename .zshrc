@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
 unsetopt BEEP
 
@@ -78,8 +77,8 @@ fi
 export TERM=rxvt-unicode
 
 # Pyenv
-eval "$(pyenv init --path)"
-eval "$(pyenv init -)"
+# eval "$(pyenv init --path)"
+# eval "$(pyenv init -)"
 
 # Starship
 eval "$(starship init zsh)"

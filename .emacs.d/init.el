@@ -146,15 +146,15 @@
 ;; (load-theme 'FairyFloss t)
 
 
-(load "~/.emacs.d/fairyfloss-theme.el")
+;; (load "~/.emacs.d/fairyfloss-theme.el")
 
 ;; Ported from previous styles.el
 (setq inhibit-startup-screen t)
-(load-file (fullpath-relative-to-current-file "mode-line.el"))
+
 (menu-bar-mode 0)
 (if (display-graphic-p)
     (progn
-      (load-theme 'fairyfloss t)
+      (load-theme 'dracula t)
       (tool-bar-mode 0)
       (setq default-frame-alist '((right-fringe . 0)
 				  (left-fringe . 0)

@@ -216,6 +216,10 @@ alias cdsia="cd $HOME/go/src/gitlab.com/NebulousLabs/Sia"
 alias cdsiabe="cd $HOME/go/src/gitlab.com/NebulousLabs/Sia-Block-Explorer"
 alias idn='sudo ifdown --force wlan0'
 alias iup='sudo ifup wlan0'
+
+alias goodsteam='ENABLE_HDR_WSI=1 DXVK_HDR=1 DISPLAY= gamescope -f -e -W 3840 -H 2160 -r 144 --hdr-enabled --hdr-debug-force-output -- steam'
+alias goodsteam2='ENABLE_HDR_WSI=1 DXVK_HDR=1 DISPLAY= gamescope -f -e -W 3840 -H 2160 -r 60 --hdr-enabled --hdr-debug-force-output --backend drm -- steam'
+
 function vrctest
 {
     vrcdir="/home/triazo/.var/app/com.valvesoftware.Steam/data/Steam/steamapps/compatdata/438100/pfx/drive_c/users/steamuser/AppData/LocalLow/VRChat/VRChat/Avatars/"

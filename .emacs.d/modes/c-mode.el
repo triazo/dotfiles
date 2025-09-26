@@ -22,9 +22,9 @@
 ;; Define Tab width
 (setq truncate-lines 1)
 (setq tab-width 4)
-(setq c-basic-offset 4)
+;; (setq c-basic-offset 4)
 (setq indent-tabs-mode nil)
-(defvaralias 'c-basic-offset 'tab-width)
+; (defvaralias 'c-basic-offset 'tab-width)
 
 
 ;; Make backspace and C-d delete whitespace
@@ -46,9 +46,9 @@
   ;; (semantic-mode 1)
   ;; (require 'semantic/ia)
   ;; (require 'semantic/bovine/gcc)
-  
+
   ;; Enable imenu
-  
+
   ;;(semantic-load-enable-minimum-features)
   ;;(semantic-load-enable-gaudy-code-helpers)
   ;; Try to make completions when not typing
@@ -56,6 +56,3 @@
   ;; Use the Semantic speedbar additions
   ;; (add-hook 'speedbar-load-hook (lambda () (require 'semantic/sb))))
   )
-  
-
-

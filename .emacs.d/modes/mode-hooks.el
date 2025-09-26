@@ -12,7 +12,6 @@
 ; Settings for C++ mode (and I guess C as well)
 (add-hook 'c-mode-common-hook (lambda () (load "~/.emacs.d/modes/c-mode.el")))
 (add-hook 'c-mode-common-hook 'hs-minor-mode)
-(add-hook 'c-mode-common-hook 'linum-mode)
 
 ;; Terraform mode hooks
 (add-hook 'terraform-mode-hook 'terraform-format-on-save-mode)
